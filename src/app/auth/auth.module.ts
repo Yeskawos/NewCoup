@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,7 @@ import { MaterialModule } from '../material/material.module';
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

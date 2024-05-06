@@ -1,1 +1,50 @@
-<p>register works!</p>
+<h1 class="text-center">NEWCOUP</h1>
+
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+    <div class="row">
+        <div class="col">
+            <label for="userName">Introduce tu nombre:</label><br>
+            <input type="text" placeholder="Nombre de usuario" class="form-control" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="edad">Introduce tu Fecha de Nacimiento:</label><br>
+            <input type="date" placeholder="Nombre de usuario" class="form-control" required>
+        </div>
+        <div class="col">
+            <label for="Edad">Edad:</label><br>
+            <input type="number" min="0" id="edad" name="edad" class="form-control" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="genero">Seleccione género</label><br>
+            <select id="genero" class="form-select" required>
+                <option value="">Seleccione su Género:</option>
+                <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="orientacionSexual">Seleccione Orientacion Sexual:</label><br>
+            <select class="form-select" id="orientacionSexual" required>
+                <option value="">Seleccione su Orientación sexual:</option>
+                <option *ngFor="let orientacion of orientacionSexual" [value]="orientacion">{{ orientacion }}</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="orientacionSexual">¿Qué quieres que te mostremos?</label><br>
+            <select class="form-select" id="orientacionSexual" required>
+                <option value="">Seleccione uno:</option>
+                <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+            </select>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Enviar datos</button>
+        </div>
+    </div>
+</form>

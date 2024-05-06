@@ -1,0 +1,17 @@
+export interface DatosRegistro {
+    userName?: string,
+    genero?: string,
+    password?: string,
+    orientacionSexual?: string,
+    edad?: number,
+    correo?: string,
+    telefono?: string,
+    tipoCuenta?: boolean,
+    fechaNacimiento?: Date,
+    localizacion?: string,
+    preferencias?: string,
+    intereses?: string,
+    descripcion?: string,
+    likes?: string,
+    rutaFotos?: string,
+}
