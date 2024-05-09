@@ -40,4 +40,7 @@ border-color: #FF6B6B; /* Borde rosa */
 color: #FFFFFF; /* Texto blanco */
 }
 
+input::placeholder {
+  color: white; /* Cambia el color del placeholder a gris claro */
+}
 

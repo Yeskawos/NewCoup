@@ -1,1 +1,32 @@
-<p>datos works!</p>
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+  <div class="row">
+      <div class="col">
+          <label for="correo">Introduce tu correo electrónico:</label><br>
+          <input type="text" formControlName="correo" placeholder="Correo electrónico" class="form-control" required>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col">
+          <label for="passw1">Introduce tu contraseña:</label><br>
+          <input type="password" formControlName="passw1" placeholder="Contraseña" class="form-control" required>
+      </div>
+      <div class="col">
+          <label for="passw2">Repite tu contraseña:</label><br>
+          <input type="password" formControlName="passw2" placeholder="Repetir contraseña" class="form-control">
+          <!-- <p *ngIf="edadIngresada && edad < 18" style="color: red;">La edad debe ser mayor a 18 años</p> -->
+      </div>
+  </div>
+  <div class="row">
+      <div class="col">
+          <label for="telefono">Introducir teléfono:</label><br>
+          <input type="number" placeholder="Teléfono" formControlName="telefono" class="form-control" required>
+      </div>
+  </div>
+  <br>
+  <div class="row">
+      <div class="col">
+          <button *ngIf="this.formulario.valid" type="submit" class="btn btn-primary">Siguiente</button>
+          <!-- (click)="mostrarDatos()" -->
+      </div>
+  </div>
+</form>

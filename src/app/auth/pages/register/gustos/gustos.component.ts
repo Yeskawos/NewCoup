@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatosRegistro } from '../../../../interfaces/register.interface';
 import { RegisterService } from '../../../../services/registerService/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gustos',
@@ -53,9 +54,10 @@ export class GustosComponent implements OnInit{
     'No está en la lista'
   ]
 
-  constructor( 
+  constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
+    private router: Router,
   ) {
      // Obtener la fecha actual
     const date = new Date();
@@ -70,9 +72,9 @@ export class GustosComponent implements OnInit{
       genero: ['', Validators.required],
       orientacionSexual: ['', Validators.required],
       preferencias: ['', Validators.required],
-      edad: ['', [Validators.required, this.validarEdad]] 
+      edad: ['', [Validators.required, this.validarEdad]]
     });
-  }  
+  }
 
   calcularEdad() {
     this.edadIngresada = true;
@@ -89,7 +91,7 @@ export class GustosComponent implements OnInit{
       this.edad = edad;
       this.formulario.get('edad')!.setValue(this.edad);
     }
-  }   
+  }
 
   validarEdad(control: AbstractControl): { [key: string]: boolean } | null {
     const edad = control.value;
@@ -108,6 +110,7 @@ export class GustosComponent implements OnInit{
       this.datosFormulario.edad = this.formulario.get('edad')!.value;
       this.datosFormulario.fechaNacimiento = this.formulario.get('fechaNacimiento')!.value;
       this.registerService.introducirDatos(this.datosFormulario, 1);
+      this.router.navigate(['/auth/register/datos']);
     } else {
       alert('Formulario inválido');
     }
@@ -122,6 +125,6 @@ export class GustosComponent implements OnInit{
     console.log('Orientacion: ',this.formulario.get('orientacionSexual')!.value);
     console.log('Preferencias: ',this.formulario.get('preferencias')!.value);
   }
-  
+
 
 }
