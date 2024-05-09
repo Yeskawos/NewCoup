@@ -28,5 +28,6 @@ export class RegisterService implements OnInit{
       this.numberPage = 1;
     }
     console.log(this.datos);
+    console.log(this.numberPage);
   }
 }

@@ -7,6 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GustosComponent } from './pages/register/gustos/gustos.component';
+import { DatosComponent } from './pages/register/datos/datos.component';
 
 
 
@@ -16,6 +17,7 @@ import { GustosComponent } from './pages/register/gustos/gustos.component';
     RegisterComponent,
     LayoutComponent,
     GustosComponent,
+    DatosComponent,
   ],
   imports: [
     CommonModule,

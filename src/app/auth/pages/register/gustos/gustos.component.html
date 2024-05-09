@@ -16,7 +16,7 @@
             <label for="edad">Edad:</label><br>
             <input type="number" id="edad" formControlName="edad" class="form-control" readonly>
             <p *ngIf="edadIngresada && edad < 18" style="color: red;">La edad debe ser mayor a 18 años</p>
-        </div>          
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -45,7 +45,7 @@
     </div><br>
     <div class="row">
         <div class="col">
-            <button *ngIf="this.formulario.valid" type="submit" class="btn btn-primary">Enviar datos</button>
+            <button *ngIf="this.formulario.valid" type="submit" class="btn btn-primary">Siguiente</button>
             <!-- (click)="mostrarDatos()" -->
         </div>
     </div>

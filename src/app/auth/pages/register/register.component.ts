@@ -8,8 +8,6 @@ import { RegisterService } from '../../../services/registerService/register.serv
 })
 export class RegisterComponent{
 
-  page: number = this.registerService.numberPage;
-
   constructor(
     private registerService: RegisterService,
   ) {}
