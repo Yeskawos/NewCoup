@@ -1,0 +1,43 @@
+/* Fondo negro */
+body {
+background-color: #000000;
+color: #FFFFFF; /* Texto blanco para contrastar con el fondo oscuro */
+}
+
+/* Encabezado */
+.header {
+background-color: #000000; /* Fondo negro */
+color: #FFFFFF; /* Texto blanco */
+}
+
+/* Botones */
+.btn-primary {
+background-color: #FF6B6B; /* Rosa pastel */
+border-color: #FF6B6B; /* Borde rosa */
+color: #FFFFFF; /* Texto blanco */
+}
+
+.btn-primary:hover {
+    background-color: #3B3B3B; /* Fondo negro para los campos de formulario */
+    border-color: #FF6B6B; /* Borde rosa */
+    color: #FFFFFF; /* Texto blanco */
+}
+
+a {
+color: #FF6B6B; /* Rosa pastel para los enlaces */
+}
+
+/* Cards o tarjetas */
+.card {
+background-color: #3B3B3B; /* Fondo negro para resaltar */
+color: #FFFFFF; /* Texto blanco */
+}
+
+/* Formularios */
+.form-control, .form-select {
+background-color: #3B3B3B; /* Fondo negro para los campos de formulario */
+border-color: #FF6B6B; /* Borde rosa */
+color: #FFFFFF; /* Texto blanco */
+}
+
+

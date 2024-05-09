@@ -1,0 +1,7 @@
+.login-input {
+  width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+  margin-bottom: 15px;
+}
+.login-card {
+  background-color: black;
+}
