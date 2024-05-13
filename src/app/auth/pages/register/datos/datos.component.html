@@ -1,32 +1,45 @@
-<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
-  <div class="row">
-      <div class="col">
-          <label for="correo">Introduce tu correo electrónico:</label><br>
-          <input type="text" formControlName="correo" placeholder="Correo electrónico" class="form-control" required>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col">
-          <label for="passw1">Introduce tu contraseña:</label><br>
-          <input type="password" formControlName="passw1" placeholder="Contraseña" class="form-control" required>
-      </div>
-      <div class="col">
-          <label for="passw2">Repite tu contraseña:</label><br>
-          <input type="password" formControlName="passw2" placeholder="Repetir contraseña" class="form-control">
-          <!-- <p *ngIf="edadIngresada && edad < 18" style="color: red;">La edad debe ser mayor a 18 años</p> -->
-      </div>
-  </div>
-  <div class="row">
-      <div class="col">
-          <label for="telefono">Introducir teléfono:</label><br>
-          <input type="number" placeholder="Teléfono" formControlName="telefono" class="form-control" required>
-      </div>
-  </div>
-  <br>
-  <div class="row">
-      <div class="col">
-          <button *ngIf="this.formulario.valid" type="submit" class="btn btn-primary">Siguiente</button>
-          <!-- (click)="mostrarDatos()" -->
-      </div>
-  </div>
+<form [formGroup]="formulario" (ngSubmit)="finalizarDatos()">
+    <div class="row">
+        <div class="col">
+            <label for="correo">Introduce tu correo electrónico:</label><br>
+            <input type="text" formControlName="correo" placeholder="Correo electrónico" class="form-control" required [readonly]="correoReadOnly"><br>
+            <button (click)="enviarFormulario($event)" class="btn btn-primary" *ngIf="!this.validacion.valid">Enviar código</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="!correoValidado">
+        <div class="col"></div>
+        <div class="col">
+            <label for="validar">Introducir código</label>
+            <form [formGroup]="validacion">
+                <input type="number" placeholder="Introduce el código de validación" formControlName="codigo" maxlength="6" class="form-control"><br>
+                <button (click)="codigoValido($event)" class="btn btn-primary" *ngIf="this.validacion.valid">validar</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row" *ngIf="correoValidado">
+        <p *ngIf="mostrarTextoContra" style="color: red;">Las contraseñas deben coincidir</p>
+        <div class="col">
+            <label for="passw1">Introduce tu contraseña:</label><br>
+            <input type="password" formControlName="passw1" placeholder="Contraseña" class="form-control" required>
+        </div>
+        <div class="col">
+            <label for="passw2">Repite tu contraseña:</label><br>
+            <input type="password" formControlName="passw2" placeholder="Repetir contraseña" class="form-control" (blur)="validarContra()">
+            <!-- <p *ngIf="edadIngresada && edad < 18" style="color: red;">La edad debe ser mayor a 18 años</p> -->
+        </div>
+    </div>
+    <div class="row" *ngIf="correoValidado && passValidada">
+        <div class="col">
+            <label for="telefono">Introducir teléfono:</label><br>
+            <input type="number" placeholder="Teléfono" formControlName="telefono" class="form-control" required>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <button *ngIf="this.formulario.valid && passValidada" type="submit" class="btn btn-primary">Siguiente</button>
+            <!-- (click)="mostrarDatos()" -->
+        </div>
+    </div>
 </form>

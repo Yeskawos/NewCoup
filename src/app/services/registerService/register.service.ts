@@ -26,6 +26,10 @@ export class RegisterService implements OnInit{
       this.datos.orientacionSexual = objeto.orientacionSexual
       this.datos.preferencias = objeto.preferencias
       this.numberPage = 1;
+    }else if( page === 2 ){
+      this.datos.correo = objeto.correo;
+      this.datos.password = objeto.password;
+      this.datos.telefono = objeto.telefono;
     }
     console.log(this.datos);
     console.log(this.numberPage);
