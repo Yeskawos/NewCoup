@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { DatosRegistro } from '../../interfaces/register.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class RegisterService implements OnInit{
 
   datos: DatosRegistro = {};
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   ngOnInit(): void {
 
@@ -30,8 +33,20 @@ export class RegisterService implements OnInit{
       this.datos.correo = objeto.correo;
       this.datos.password = objeto.password;
       this.datos.telefono = objeto.telefono;
+    }else if ( page === 3 ){
+      this.datos.descripcion = objeto.descripcion;
+      this.datos.rutaFotos = 'C:/Apache24/htdocs/TFG/Fotos/' + this.datos.userName;
+      this.datos.localizacion = objeto.localizacion;
+
+      this.añadirUsuarios();
+
     }
     console.log(this.datos);
     console.log(this.numberPage);
   }
+
+  añadirUsuarios() {
+    return this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos);
+  }
+  
 }

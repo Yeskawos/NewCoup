@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { DatosComponent } from './pages/register/datos/datos.component';
 import { GustosComponent } from './pages/register/gustos/gustos.component';
+import { DescripcionComponent } from './pages/register/descripcion/descripcion.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
           {
             path: 'gustos',
             component: GustosComponent
+          },
+          {
+            path: 'descripcion',
+            component: DescripcionComponent
           },
           {
             path: '**',

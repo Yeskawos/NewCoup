@@ -73,7 +73,7 @@ export class DatosComponent implements OnInit {
       this.datosFormulario.password = this.formulario.get('passw1')!.value;
       this.datosFormulario.telefono = this.formulario.get('telefono')!.value;
       this.registerService.introducirDatos(this.datosFormulario, 2);
-      this.router.navigate(['/auth/register/datos']);
+      this.router.navigate(['/auth/register/descripcion']);
     } else {
       alert('Formulario inválido');
     }

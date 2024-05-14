@@ -1,0 +1,18 @@
+<form (submit)="onSubmit()" [formGroup]="formulario" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <label for="fotoPerfil">Foto de Perfil:</label><br>
+            <input type="file" name="fotoPerfil" (change)="onFileSelected($event)" (change)="previsualizar($event)" class="form-control" accept="image/*">
+            <!-- <img *ngIf="selectedFile" [src]="imageUrl" alt="Previsualización de la imagen"> -->
+        </div>
+        <div class="col-12"><br>
+            <label for="descripcion">Introduce una descripción sobre tí:</label><br>
+            <textarea name="descripcion" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"><br>
+            <button *ngIf="formulario.valid" class="btn btn-primary" (click)="event($event)">Enviar</button>
+        </div>
+    </div>
+</form>
