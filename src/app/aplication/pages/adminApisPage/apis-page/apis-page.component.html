@@ -1,0 +1,12 @@
+<mat-form-field class="mx-5 my-5">
+    <mat-select [(value)]="tablaSeleccionada" (selectionChange)="seleccionarTabla()" placeholder="Selecciona una tabla">
+        <mat-option *ngFor="let tabla of tablas" [value]="tabla">{{ tabla }}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<h1 *ngIf="tablaSeleccionada" class="mx-5">Campos de la tabla {{ tablaSeleccionada }}:</h1>
+
+<ul class="mx-5">
+    <li *ngFor="let campo of camposTabla">{{ campo }}</li>
+</ul>
+
