@@ -7,12 +7,12 @@
         </div>
         <div class="col-12"><br>
             <label for="descripcion">Introduce una descripción sobre tí:</label><br>
-            <textarea name="descripcion" class="form-control"></textarea>
+            <textarea name="descripcion" formControlName="descripcion" class="form-control"></textarea>
         </div>
     </div>
     <div class="row">
         <div class="col"><br>
-            <button *ngIf="formulario.valid" class="btn btn-primary" (click)="event($event)">Enviar</button>
+            <button *ngIf="formulario.valid" class="btn btn-primary">Enviar</button>
         </div>
     </div>
 </form>

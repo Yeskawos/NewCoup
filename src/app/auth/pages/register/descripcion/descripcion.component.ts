@@ -82,13 +82,10 @@ export class DescripcionComponent implements OnInit{
   }
 
   onSubmit() {
-    
     if (this.formulario.valid) {
-      this.datosFormulario.correo = this.formulario.get('correo')!.value;
-      this.datosFormulario.password = this.formulario.get('passw1')!.value;
-      this.datosFormulario.telefono = this.formulario.get('telefono')!.value;
+      this.datosFormulario.descripcion = this.formulario.get('descripcion')!.value;
       this.registerService.introducirDatos(this.datosFormulario, 3);
-      // this.router.navigate(['/auth/register/descripcion']);
+      this.router.navigate(['/auth/register/descripcion']);
     } else {
       alert('Formulario inválido');
     }

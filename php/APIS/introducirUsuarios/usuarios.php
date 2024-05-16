@@ -3,45 +3,62 @@
 header("Access-Control-Allow-Origin: *");
 // Permitir los métodos POST desde cualquier origen
 header("Access-Control-Allow-Methods: POST");
-// Permitir el contenido de la solicitud en el cuerpo (incluido el correo electrónico)
+// Permitir el contenido de la solicitud en el cuerpo
 header("Access-Control-Allow-Headers: Content-Type");
-// Conexión a la base de datos (código del paso anterior)
-include('../conexion/conexionBDD.php');
-// Verifica si se han enviado datos mediante POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recibe los datos del formulario como JSON
-    $datos = json_decode(file_get_contents("php://input"), true);
 
-    // Define un array para almacenar los valores a insertar
-    $valores = [];
+// Incluir el archivo de conexión a la base de datos
+include('C:/Apache24/htdocs/TFG/conexion/conexionBDD.php');
 
-    // Define un array con los nombres de los campos en la tabla Usuarios
-    $campos = ['id_Usuario', 'genero', 'orientacionSexual', 'nombreUsuario', 'contraseña', 'edad', 'correoElectronico', 'telefono', 'tipoCuenta', 'fechaNacimiento', 'localizacion', 'preferencias', 'intereses', 'descripcion', 'likes', 'rutaFotos'];
+$conexion->select_db("NewCoup");
 
-    // Itera sobre cada campo y verifica si está presente en los datos recibidos
-    foreach ($campos as $campo) {
-        // Si el campo está presente en los datos y tiene un valor definido, lo añade al array de valores
-        if (isset($datos[$campo])) {
-            $valores[$campo] = $datos[$campo];
-        } else {
-            // Si el campo no está presente o no tiene un valor definido, lo establece como NULL
-            $valores[$campo] = null;
-        }
+// Verificar si se ha enviado una solicitud POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Leer los datos enviados desde Angular
+    $datos = json_decode(file_get_contents('php://input'));
+
+    $nombre = $datos->userName;
+
+    // Crear la consulta INSERT con los datos recibidos
+    $consulta = "INSERT INTO Usuarios (genero, orientacionSexual, nombreUsuario, contraseña, edad, correoElectronico, telefono, tipoCuenta, fechaNacimiento, localizacion, preferencias, intereses, descripcion, likes, rutaFotos) VALUES ";
+
+
+        $genero = $datos->genero ?? '';
+        $orientacionSexual = $datos->orientacionSexual ?? '';
+        $nombreUsuario = $datos->userName ?? '';
+        $contraseña = password_hash($datos->password, PASSWORD_DEFAULT);
+        $edad = $datos->edad ?? '';
+        $correoElectronico = $datos->correo ?? '';
+        $telefono = $datos->telefono ?? '';
+        $tipoCuenta = $datos->tipoCuenta ?? 'user';
+        $fechaNacimiento = $datos->fechaNacimiento ?? '';
+        $localizacion = $datos->localizacion ?? '';
+        $preferencias = $datos->preferencias ?? '';
+        $intereses = $datos->intereses ?? '';
+        $descripcion = $datos->descripcion ?? '';
+        $likes = $datos->likes ?? '';
+        $rutaFotos = $datos->rutaFotos ?? '';
+
+        // Agregar los valores de cada usuario a la consulta
+        $consulta .= "('$genero', '$orientacionSexual', '$nombreUsuario', '$contraseña', '$edad', '$correoElectronico', '$telefono', '$tipoCuenta', '$fechaNacimiento', '$localizacion', '$preferencias', '$intereses', '$descripcion', '$likes', '$rutaFotos'),";
+    // Eliminar la coma sobrante al final de la consulta
+    $consulta = rtrim($consulta, ',');
+
+    // Devolver la consulta como respuesta
+    // echo json_encode(["consulta" => $consulta]);
+
+
+
+    // Ejecutar la consulta en la base de datos
+    if ($conexion->query($consulta) === TRUE) {
+        // Si la inserción fue exitosa, devuelve un mensaje de éxito
+        echo json_encode(["success" => "Datos insertados correctamente."]);
+    } else {
+        // Si hubo un error en la inserción, devuelve el mensaje de error de la base de datos
+        echo json_encode(["error" => "Error al insertar datos en la base de datos: " . $conexion->error]);
     }
-
-    // Prepara la consulta SQL para insertar un nuevo usuario
-    $consulta = "INSERT INTO Usuarios (id_Usuario, genero, orientacionSexual, nombreUsuario, contraseña, edad, correoElectronico, telefono, tipoCuenta, fechaNacimiento, localizacion, preferencias, intereses, descripcion, likes, rutaFotos) VALUES (:idUsuario, :genero, :orientacionSexual, :nombreUsuario, :contraseña, :edad, :correoElectronico, :telefono, :tipoCuenta, :fechaNacimiento, :localizacion, :preferencias, :intereses, :descripcion, :likes, :rutaFotos)";
-
-    // Prepara la sentencia SQL
-    $stmt = $pdo->prepare($consulta);
-
-    // Ejecuta la sentencia SQL con los valores proporcionados
-    $stmt->execute($valores);
-
-    // Retorna una respuesta (puedes modificarla según tus necesidades)
-    echo json_encode(['mensaje' => 'Usuario insertado correctamente']);
 } else {
-    // Si no se reciben datos mediante POST, retorna un error
-    http_response_code(400);
-    echo json_encode(['error' => 'No se han proporcionado datos']);
+    // Si la solicitud no es POST, devuelve un mensaje de error
+    echo json_encode(["error" => "Se esperaba una solicitud POST."]);
 }
+
+

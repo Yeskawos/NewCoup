@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { DatosRegistro } from '../../interfaces/register.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { response } from 'express';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +43,19 @@ export class RegisterService implements OnInit{
       this.añadirUsuarios();
 
     }
-    console.log(this.datos);
-    console.log(this.numberPage);
+    // console.log(this.datos);
+    // console.log(this.numberPage);
   }
 
-  añadirUsuarios() {
-    return this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos);
+  async añadirUsuarios() {
+      // console.log('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php?datos=' + JSON.stringify(this.datos))
+    try {
+      const response = await this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos).toPromise();
+      console.log('Respuesta de la API:', response);
+    } catch(error) {
+      console.error('Error al llamar a la API:', error);
+    }
   }
   
 }
+

@@ -14,8 +14,6 @@ crearTablaCoincidencias($conexion);
 crearTablaRelacion_Esporadica($conexion);
 
 
-
-
 function crearTablaUsuarios( $conexion ) {
 
     $conexion->select_db("NewCoup");
@@ -25,7 +23,7 @@ function crearTablaUsuarios( $conexion ) {
         
     }else{
         $consulta = "CREATE TABLE Usuarios(
-            id_Usuario VARCHAR(255) PRIMARY KEY,
+            id_Usuario INT AUTO_INCREMENT PRIMARY KEY,
             genero VARCHAR(255),
             orientacionSexual VARCHAR(255),
             nombreUsuario VARCHAR(20),
@@ -33,7 +31,7 @@ function crearTablaUsuarios( $conexion ) {
             edad INT,
             correoElectronico VARCHAR(100), 
             telefono INT(9),
-            tipoCuenta boolean, 
+            tipoCuenta ENUM('user', 'admin'), 
             fechaNacimiento Date,
             localizacion Varchar(20),
             preferencias Varchar(255),
@@ -59,11 +57,11 @@ function crearTablaPublicacion($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Publicaciones (
-            id_Publicacion VARCHAR(255) PRIMARY KEY,
+            id_Publicacion INT AUTO_INCREMENT PRIMARY KEY,
             descripcion VARCHAR(255),
             fecha DATE,
             rutaFoto VARCHAR(255),
-            id_Usuario VARCHAR(255),
+            id_Usuario INT,
             FOREIGN KEY (id_Usuario) REFERENCES Usuarios(id_Usuario) 
         )";
         if ($conexion->query($consulta) === TRUE) {
@@ -82,7 +80,7 @@ function crearTablaHashtag($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Hashtags (
-            id_Hashtag VARCHAR(255) PRIMARY KEY,
+            id_Hashtag INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(20) NOT NULL
         )";
         if ($conexion->query($consulta) === TRUE) {
@@ -101,8 +99,8 @@ function crearTablaHashtag_Usuario($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Usuario_Hashtags (
-            id_Hashtag VARCHAR(255),
-            id_Usuario VARCHAR(255),
+            id_Hashtag INT,
+            id_Usuario INT,
             PRIMARY KEY (id_Hashtag, id_Usuario),
             FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
             FOREIGN KEY (id_Usuario) REFERENCES Usuarios(id_Usuario)
@@ -123,8 +121,8 @@ function crearTablaPublicacion_Hashtag($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Publicacion_Hashtag (
-            id_Publicacion VARCHAR(255),
-            id_Hashtag VARCHAR(255),
+            id_Publicacion INT,
+            id_Hashtag INT,
             PRIMARY KEY (id_Hashtag, id_Publicacion),
             FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
             FOREIGN KEY (id_Publicacion) REFERENCES Publicaciones(id_Publicacion)
@@ -146,9 +144,9 @@ function crearTablaMensajes($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Mensajes (
-            id_UsuarioRemitente VARCHAR(255),
-            id_UsuarioRecibe VARCHAR(255),
-            id_Mensaje VARCHAR(255),
+            id_UsuarioRemitente INT,
+            id_UsuarioRecibe INT,
+            id_Mensaje INT,
             contenido VARCHAR(255),
             fecha Date,
             PRIMARY KEY (id_UsuarioRemitente, id_UsuarioRecibe, id_Mensaje),
@@ -172,14 +170,14 @@ function crearTablaCoincidencias($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Coincidencias (
-            id_Usuario1 VARCHAR(255),
-            id_Usuario2 VARCHAR(255),
-            id_Coincidencia VARCHAR(255),
-            fecha Date,
-            PRIMARY KEY (id_Usuario1, id_Usuario2, id_Coincidencia),
+            id_Coincidencia INT AUTO_INCREMENT,
+            id_Usuario1 INT,
+            id_Usuario2 INT,
+            fecha DATE,
+            PRIMARY KEY (id_Coincidencia, id_Usuario1, id_Usuario2),
             FOREIGN KEY (id_Usuario1) REFERENCES Usuarios(id_Usuario),
             FOREIGN KEY (id_Usuario2) REFERENCES Usuarios(id_Usuario)
-        )";        
+        )";       
         if ($conexion->query($consulta) === TRUE) {
             echo "Tabla Coincidencias creada exitosamente.";
         } else {
@@ -197,12 +195,12 @@ function crearTablaRelacion_Esporadica($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Relacion_Esporadica (
-            id_Usuario1 VARCHAR(255),
-            id_Usuario2 VARCHAR(255),
-            id_Relacion VARCHAR(255),
+            id_Relacion INT AUTO_INCREMENT,
+            id_Usuario1 INT,
+            id_Usuario2 INT,
             fecha Date,
             tipo VARCHAR(20),
-            PRIMARY KEY (id_Usuario1, id_Usuario2, id_Relacion),
+            PRIMARY KEY (id_Relacion, id_Usuario1, id_Usuario2),
             FOREIGN KEY (id_Usuario1) REFERENCES Usuarios(id_Usuario),
             FOREIGN KEY (id_Usuario2) REFERENCES Usuarios(id_Usuario)
         )";        
