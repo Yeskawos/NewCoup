@@ -11,13 +11,13 @@
         <mat-form-field class="login-input">
           <input matInput placeholder="Contraseña" type="password" required>
         </mat-form-field><br>
-        <button mat-raised-button color="primary">Iniciar sesión</button>
+        <button  mat-raised-button color="primary"><a href="http://localhost:4200/newCoup/home">Iniciar sesión</a></button> <!-- *ngIf="validado" -->
       </form>
     </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-content>
-        <button [routerLink]="'/auth/register/gustos'"><a>¿No tienes cuenta?</a></button>
+      <button [routerLink]="'/auth/register/gustos'" mat-raised-button color="secondary">¿No tienes cuenta?</button>
     </mat-card-content>
   </mat-card>
 </div>

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,10 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

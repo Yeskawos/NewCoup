@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor() {}
+  validado: boolean = false;
+
+  constructor(
+    private router: Router
+  ) {}
 
   onLogin(){
-
   }
 
 }
