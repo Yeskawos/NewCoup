@@ -10,11 +10,13 @@ import { MensajeriaComponent } from './pages/allPages/mensajeria/mensajeria/mens
 import { PlanEstaNocheComponent } from './pages/allPages/planEstaNoche/plan-esta-noche/plan-esta-noche.component';
 import { ProfileComponent } from './pages/allPages/profile/profile/profile.component';
 import { PublicacionesComponent } from './pages/allPages/publicaciones/publicaciones/publicaciones.component';
+import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
+    component: NavbarComponent,
     children: [
       {
         path: 'apis',
@@ -28,35 +30,35 @@ const routes: Routes = [
         path: 'reports',
         component: ReportsPageComponent
       },
+      {
+        path: 'buscador',
+        component: BuscadorComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'likes',
+        component: LikesComponent
+      },
+      {
+        path: 'mensajeria',
+        component: MensajeriaComponent
+      },
+      {
+        path: 'planEstaNoche',
+        component: PlanEstaNocheComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'publicaciones',
+        component: PublicacionesComponent
+      }
     ]
-  },
-  {
-    path: 'buscador',
-    component: BuscadorComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'likes',
-    component: LikesComponent
-  },
-  {
-    path: 'mensajeria',
-    component: MensajeriaComponent
-  },
-  {
-    path: 'planEstaNoche',
-    component: PlanEstaNocheComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
-    path: 'publicaciones',
-    component: PublicacionesComponent
   },
   {
     path: '**',

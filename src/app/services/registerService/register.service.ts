@@ -10,8 +10,8 @@ import { error } from 'console';
 export class RegisterService implements OnInit{
 
   numberPage: number = 0;
-
   datos: DatosRegistro = {};
+  base64Image: string = '';
 
   constructor(
     private http: HttpClient,
@@ -19,6 +19,10 @@ export class RegisterService implements OnInit{
 
   ngOnInit(): void {
 
+  }
+
+  setImage(base64Image: string) {
+    this.base64Image = base64Image;
   }
 
   introducirDatos( objeto: DatosRegistro, page: number ) {
@@ -37,7 +41,7 @@ export class RegisterService implements OnInit{
       this.datos.telefono = objeto.telefono;
     }else if ( page === 3 ){
       this.datos.descripcion = objeto.descripcion;
-      this.datos.rutaFotos = 'C:/Apache24/htdocs/TFG/Fotos/' + this.datos.userName;
+      this.datos.rutaFotos = this.base64Image;
       this.datos.localizacion = objeto.localizacion;
 
       this.añadirUsuarios();
@@ -48,14 +52,19 @@ export class RegisterService implements OnInit{
   }
 
   async añadirUsuarios() {
-      // console.log('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php?datos=' + JSON.stringify(this.datos))
     try {
-      const response = await this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos).toPromise();
-      console.log('Respuesta de la API:', response);
-    } catch(error) {
-      console.error('Error al llamar a la API:', error);
+        const response: any = await this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos).toPromise();
+        console.log('Respuesta de la API:', response);
+        if (response.success) {
+            console.log('Base64 de la imagen:', response.rutaFotos);
+        } else {
+            console.error('Error en la API:', response.error);
+        }
+    } catch (error) {
+        console.error('Error al llamar a la API:', error);
     }
-  }
+}
+
   
 }
 

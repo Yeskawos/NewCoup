@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-12">
             <label for="fotoPerfil">Foto de Perfil:</label><br>
-            <input type="file" name="fotoPerfil" (change)="onFileSelected($event)" (change)="previsualizar($event)" class="form-control" accept="image/*">
-            <!-- <img *ngIf="selectedFile" [src]="imageUrl" alt="Previsualización de la imagen"> -->
+            <input type="file" name="fotoPerfil" (change)="onFileSelected($event); previsualizar($event)" class="form-control" accept="image/*">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Previsualización de la imagen" style="max-width: 400px; height: auto; margin-top: 10px;">
         </div>
         <div class="col-12"><br>
             <label for="descripcion">Introduce una descripción sobre tí:</label><br>

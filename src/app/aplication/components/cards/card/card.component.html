@@ -1,10 +1,22 @@
-<div class="card-container" cdkDrag (cdkDragEnded)="onDragEnded($event)">
-    <div class="card">
-      <h2>Título de la Tarjeta</h2>
-      <p>Contenido de la tarjeta...</p>
+<div class="card">
+  <!-- Encabezado de la tarjeta -->
+  <div class="card-header">
+    <h1>{{ user.nombreUsuario }}, {{ user.edad }}</h1>
+  </div>
+  <!-- Cuerpo de la tarjeta -->
+  <div class="card-body">
+    <div *ngIf="user">
+      <!-- Título: Nombre del Usuario -->
+      <h5 class="card-title">{{ user.intereses }}</h5>
+      <!-- Foto de perfil -->
+      <img *ngIf="imageUrl" [src]="imageUrl" class="card-img-top" alt="Foto de Perfil">
+      <!-- Descripción -->
+      <p class="card-text text-center mt-2">{{ user.descripcion }}</p>
+      <!-- Agrega más campos según lo necesario -->
     </div>
-</div>
-
-<script>
     
-</script>
+    <div *ngIf="!user">
+      <p>No se encontró ningún usuario con las preferencias especificadas.</p>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $intereses = $datos->intereses ?? '';
         $descripcion = $datos->descripcion ?? '';
         $likes = $datos->likes ?? '';
-        $rutaFotos = $datos->rutaFotos ?? '';
+
+        $rutaFotosBase64 = $datos->rutaFotos ?? '';
+
+         // Decodificar la cadena Base64
+        $rutaFotos = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $rutaFotosBase64));
 
         // Agregar los valores de cada usuario a la consulta
         $consulta .= "('$genero', '$orientacionSexual', '$nombreUsuario', '$contraseña', '$edad', '$correoElectronico', '$telefono', '$tipoCuenta', '$fechaNacimiento', '$localizacion', '$preferencias', '$intereses', '$descripcion', '$likes', '$rutaFotos'),";

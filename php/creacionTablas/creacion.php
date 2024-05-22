@@ -38,7 +38,7 @@ function crearTablaUsuarios( $conexion ) {
             intereses Varchar(255),
             descripcion Varchar(255),
             likes Varchar(255),
-            rutaFotos VARCHAR(255)
+            rutaFotos LONGTEXT
         )";
         if ($conexion->query($consulta) === TRUE) {
             echo "Tabla Usuarios creada exitosamente.";

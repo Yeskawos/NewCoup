@@ -17,8 +17,8 @@ export class DescripcionComponent implements OnInit{
   formulario!: FormGroup;
 
   selectedFile: File | undefined;
-
   imageUrl: string | ArrayBuffer | null = null;
+  base64Image: string | undefined;
 
   constructor(
     private http: HttpClient,
@@ -38,47 +38,32 @@ export class DescripcionComponent implements OnInit{
     this.selectedFile = event.target.files[0] as File;
     if (!this.selectedFile) {
       console.error('No se ha seleccionado ningún archivo.');
-      return;
+    return;
     }
-    // else if(!this.registerService.datos.userName){
-    //   console.error('No se ha introducido el nombre de usuario.');
-    //   return;
-    // }
-
-    const formData = new FormData();
-    formData.append('image', this.selectedFile);
-    formData.append('userName', 'Marcos'); //this.registerService.datos.userName!
-
-    this.http.post('http://localhost/TFG/crearCarpetas/adminFotos.php', formData)
-    .subscribe(
-      response => {
-        console.log('Respuesta del servidor:', response);
-      },
-      error => {
-        console.error('Error al enviar la imagen:', error);
-      }
-    );
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.base64Image = reader.result as string;
+      this.registerService.setImage(this.base64Image);
+    };
+    reader.readAsDataURL(this.selectedFile);
   }
 
   previsualizar( event: any) {
-    // Obtener el archivo seleccionado
-    const selectedFile: File = event.target.files;
-    console.log(event.target.files)
+    const selectedFile: File = event.target.files[0];
+    console.log(event.target.files);
 
-    // Verificar si se seleccionó un archivo
     if (!selectedFile) {
       console.error('No se ha seleccionado ningún archivo.');
       return;
     }
-    
-    // Leer el archivo como un URL de datos
+
     const reader = new FileReader();
     reader.onload = (e) => {
       if (e.target?.result) {
         this.imageUrl = e.target.result;
       }
-    }
-    console.log(this.imageUrl);
+    };
+    reader.readAsDataURL(selectedFile);
   }
 
   onSubmit() {
