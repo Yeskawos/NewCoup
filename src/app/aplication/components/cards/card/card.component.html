@@ -1,13 +1,14 @@
-<div class="card">
+<div *ngIf="user" class="card">
   <!-- Encabezado de la tarjeta -->
   <div class="card-header">
     <h1>{{ user.nombreUsuario }}, {{ user.edad }}</h1>
   </div>
   <!-- Cuerpo de la tarjeta -->
   <div class="card-body">
-    <div *ngIf="user">
+    <div>
       <!-- Título: Nombre del Usuario -->
       <h5 class="card-title">{{ user.intereses }}</h5>
+      <p>{{ user.id_Usuario}}</p>
       <!-- Foto de perfil -->
       <img *ngIf="imageUrl" [src]="imageUrl" class="card-img-top" alt="Foto de Perfil">
       <!-- Descripción -->

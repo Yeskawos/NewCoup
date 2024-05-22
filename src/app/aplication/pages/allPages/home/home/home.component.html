@@ -6,7 +6,7 @@
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore doloribus doloremque ullam sed vitae! A fuga repellat odio, neque, animi dignissimos pariatur veniam similique optio tempora in quam, autem vero.</p>
     </div>
     <div class="col-4 d-flex justify-content-center" style="border: 1px white solid;">
-        <app-card id="capaArrastrable" draggable="true" 
+        <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable" draggable="true" 
         (drag)="onDrag($event)" 
         (dragend)="onDragEnd($event)"></app-card>
     </div>
