@@ -1,16 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService{
 
   private apiUrl = 'http://localhost/TFG/APIS/login/login.php';  // Actualiza esto con la ruta correcta a tu API
   private user: any = null;
 
-  constructor(private http: HttpClient) {}
+  esAdmin: boolean = false;
+
+  constructor(private http: HttpClient) {
+    this.loadUserFromLocalStorage();
+    if (this.user.tipoCuenta === 'admin') {
+      this.esAdmin = true;
+    }
+  }
 
   login(correoElectronico: string, contrasenya: string): Observable<any> {
     return this.http.post<any>(this.apiUrl, { correoElectronico, contrasenya }).pipe(
@@ -34,18 +41,20 @@ export class LoginService {
     return this.user;
   }
 
-  removeUserFromLocalStorage(): void {
+  private loadUserFromLocalStorage(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.user = JSON.parse(user);
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('user') !== null;
+  }
+
+  logout(): void {
+    this.user = null;
     localStorage.removeItem('user');
-    this.user = null; // Limpiar la variable
-  }
-
-  private getItemFromLocalStorage(key: string): any {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : null;
-  }
-
-  private setItemInLocalStorage(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
   }
   
 }

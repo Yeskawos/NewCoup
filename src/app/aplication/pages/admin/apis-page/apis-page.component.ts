@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerTablasServiceService } from '../../../services/obtener-tablas-service.service';
 import { ObtenerCamposServiceService } from '../../../services/obtener-campos-service.service';
+import { LoginService } from '../../../../services/loginService/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apis-page',
@@ -12,14 +14,23 @@ export class ApisPageComponent implements OnInit{
   tablas: string[] = [];
   camposTabla: string[] = [];
 
+  user: any | null = null;
+
   tablaSeleccionada: string = '';
 
   constructor(
     private tablasService: ObtenerTablasServiceService,
     private camposService: ObtenerCamposServiceService,
+    private loginService: LoginService, 
+    private router: Router
   ){}
 
   ngOnInit(): void {
+      if (this.loginService.esAdmin === false) {
+        // Redirigir al usuario a la página de inicio (Home)
+        this.router.navigate(['/newCoup/home']); 
+      }
+
     this.tablasService.obtenerTablas().subscribe(
       data => {
         console.log('Lista de tablas:', data.tablas);
@@ -45,5 +56,6 @@ export class ApisPageComponent implements OnInit{
       );
     }
   }
+
 
 }

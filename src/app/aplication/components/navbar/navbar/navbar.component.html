@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" >
+  <mat-sidenav #sidenav mode="side">
     <!-- Contenido del menú con padding -->
     <p><a href="#">Item 1</a></p>
     <p><a href="#">Item 2</a></p>
@@ -11,7 +11,11 @@
       <button mat-icon-button (click)="sidenav.toggle()" [ngClass]="{ 'open': sidenav.opened }" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Mi Aplicación</span>
+      <span class="app-title">Mi Aplicación</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="logout()" class="logout-button">
+        <mat-icon>logout</mat-icon>
+      </button>
     </mat-toolbar>
     <!-- Contenido principal de la aplicación -->
     <div class="content">

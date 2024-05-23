@@ -70,7 +70,7 @@ export class DescripcionComponent implements OnInit{
     if (this.formulario.valid) {
       this.datosFormulario.descripcion = this.formulario.get('descripcion')!.value;
       this.registerService.introducirDatos(this.datosFormulario, 3);
-      // this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']);
     } else {
       alert('Formulario inválido');
     }

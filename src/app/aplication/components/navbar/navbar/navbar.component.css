@@ -1,47 +1,52 @@
+/* styles.css */
 .example-container {
-    height: 100%;
-  }
-  
-  .content {
-    padding: 20px;
-  }
-  
-  mat-toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center; /* Centrar el contenido */
-    align-items: center;
-  }
-  
-  mat-sidenav-content {
-    padding-top: 64px; /* Altura del toolbar */
-  }
-  
-  /* Añadir padding al contenido dentro del mat-sidenav */
-  mat-sidenav {
-    padding: 20px;
-  }
-  
-  mat-sidenav p {
-    margin: 16px 0; /* Margen adicional para los elementos del menú */
-  }
-  
-  /* Estilos para el botón de menú hamburguesa */
-  .menu-button {
-    position: absolute;
-    left: 0;
-    transition: left 0.3s ease, right 0.3s ease;
-  }
+  height: 100%;
+}
 
-  .app-title {
-    flex: 1;
-    text-align: center; /* Centrar el texto del título */
-  }
-  
-  /* Estilo cuando el sidenav está abierto */
-  .menu-button.open {
-    transform: translateX(100px); /* Ajustar según el ancho del sidenav */
-  }
+.content {
+  padding: 20px;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+mat-sidenav-content {
+  padding-top: 64px; /* Altura del toolbar */
+}
+
+/* Añadir padding al contenido dentro del mat-sidenav */
+mat-sidenav {
+  padding: 20px;
+}
+
+mat-sidenav p {
+  margin: 16px 0; /* Margen adicional para los elementos del menú */
+}
+
+/* Estilos para el botón de menú hamburguesa */
+.menu-button {
+  position: absolute;
+  left: 0;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
+.menu-button.open {
+  transform: translateX(100px); /* Ajustar según el ancho del sidenav */
+}
+
+.app-title {
+  flex: 1;
+  text-align: center; /* Centrar el texto del título */
+  font-size: 20px; /* Ajustar el tamaño de fuente si es necesario */
+}
+
+/* Estilo para el botón de logout */
+.logout-button {
+  margin-left: auto;
+}
