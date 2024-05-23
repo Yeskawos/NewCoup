@@ -56,9 +56,9 @@ export class RegisterService implements OnInit{
         const response: any = await this.http.post('http://localhost/TFG/APIS/introducirUsuarios/usuarios.php', this.datos).toPromise();
         console.log('Respuesta de la API:', response);
         if (response.success) {
-            console.log('Base64 de la imagen:', response.rutaFotos);
+            // console.log('Base64 de la imagen:', response.rutaFotos);
         } else {
-            console.error('Error en la API:', response.error);
+            alert(response.error);
         }
     } catch (error) {
         console.error('Error al llamar a la API:', error);

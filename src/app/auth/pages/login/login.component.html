@@ -4,15 +4,24 @@
       <mat-card-title>Iniciar sesión</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="login-input">
-          <input matInput placeholder="Nombre de Usuario" type="text" required>
-        </mat-form-field><br>
+          <input matInput placeholder="Correo Electrónico" formControlName="correoElectronico" type="email" required>
+          <mat-error *ngIf="loginForm.get('correoElectronico')?.invalid && loginForm.get('correoElectronico')?.touched">
+            Introduce un correo electrónico válido
+          </mat-error>
+        </mat-form-field>
+        <br>
         <mat-form-field class="login-input">
-          <input matInput placeholder="Contraseña" type="password" required>
-        </mat-form-field><br>
-        <button  mat-raised-button color="primary"><a href="http://localhost:4200/newCoup/home">Iniciar sesión</a></button> <!-- *ngIf="validado" -->
+          <input matInput placeholder="Contraseña" formControlName="contrasenya" type="password" required>
+          <mat-error *ngIf="loginForm.get('contrasenya')?.invalid && loginForm.get('contrasenya')?.touched">
+            La contraseña es obligatoria
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
       </form>
+      
     </mat-card-content>
   </mat-card>
   <mat-card>
