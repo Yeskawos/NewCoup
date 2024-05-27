@@ -1,9 +1,15 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <!-- Contenido del menú con padding -->
-    <p><a href="#">Item 1</a></p>
-    <p><a href="#">Item 2</a></p>
-    <p><a href="#">Item 3</a></p>
+    <ng-container *ngIf="esAdmin">
+      <button *ngFor="let page of listaAdmin" [routerLink]="page.route" mat-button>
+        {{ page.label }}
+      </button>
+    </ng-container> 
+    <ng-container *ngIf="!esAdmin">
+      <button *ngFor="let page of lista" [routerLink]="page.route" mat-button>
+        {{ page.label }}
+      </button>
+    </ng-container>      
   </mat-sidenav>
 
   <mat-sidenav-content>

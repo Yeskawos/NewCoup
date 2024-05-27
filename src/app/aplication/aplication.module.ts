@@ -5,7 +5,6 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApisPageComponent } from './pages/admin/apis-page/apis-page.component';
 import { ReportsPageComponent } from './pages/admin/reports/reports-page/reports-page.component';
-import { BuscadorComponent } from './pages/allPages/buscador/buscador/buscador.component';
 import { HomeComponent } from './pages/allPages/home/home/home.component';
 import { LikesComponent } from './pages/allPages/likes/likes/likes.component';
 import { MensajeriaComponent } from './pages/allPages/mensajeria/mensajeria/mensajeria.component';
@@ -25,7 +24,6 @@ import { CardComponent } from './components/cards/card/card.component';
     ApisPageComponent,
     ManageUsersPageComponent,
     ReportsPageComponent,
-    BuscadorComponent,
     HomeComponent,
     LikesComponent,
     MensajeriaComponent,

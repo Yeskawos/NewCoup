@@ -8,9 +8,9 @@ import { Observable, catchError, map, of } from 'rxjs';
 export class LoginService{
 
   private apiUrl = 'http://localhost/TFG/APIS/login/login.php';  // Actualiza esto con la ruta correcta a tu API
-  private user: any = null;
+  private user: any = {};
 
-  esAdmin: boolean = false;
+  private esAdmin: boolean = false;
 
   constructor(private http: HttpClient) {
     this.loadUserFromLocalStorage();
@@ -54,7 +54,12 @@ export class LoginService{
 
   logout(): void {
     this.user = null;
+    this.esAdmin = false
     localStorage.removeItem('user');
+  }
+
+  getAdmin(): boolean {
+    return this.esAdmin;
   }
   
 }

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApisPageComponent } from './pages/admin/apis-page/apis-page.component';
 import { ManageUsersPageComponent } from './pages/admin/manageUsersPage/manage-users-page/manage-users-page.component';
 import { ReportsPageComponent } from './pages/admin/reports/reports-page/reports-page.component';
-import { BuscadorComponent } from './pages/allPages/buscador/buscador/buscador.component';
 import { HomeComponent } from './pages/allPages/home/home/home.component';
 import { LikesComponent } from './pages/allPages/likes/likes/likes.component';
 import { MensajeriaComponent } from './pages/allPages/mensajeria/mensajeria/mensajeria.component';
@@ -29,10 +28,6 @@ const routes: Routes = [
       {
         path: 'reports',
         component: ReportsPageComponent
-      },
-      {
-        path: 'buscador',
-        component: BuscadorComponent
       },
       {
         path: 'home',

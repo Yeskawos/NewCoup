@@ -1,1 +1,21 @@
-<p>likes works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div *ngIf="likedUsers.length > 0; else noLikes" class="row">
+        <div *ngFor="let user of likedUsers" class="user-card col-md-4">
+          <img [src]="user.rutaFotos" alt="{{ user.nombreUsuario }}" class="user-photo">
+          <h3>{{ user.nombreUsuario }}</h3>
+          <p>{{ user.genero }}, {{ user.edad }}</p>
+          <p>{{ user.descripcion }}</p>
+          <p>Intereses: {{ user.intereses }}</p>
+          <p>ID: {{user.id_Usuario}}</p>
+        </div>
+      </div>
+      <ng-template #noLikes>
+        <div class="text-center">
+          <p>No has dado like a ningún usuario aún.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

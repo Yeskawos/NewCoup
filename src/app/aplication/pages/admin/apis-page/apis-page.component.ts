@@ -14,8 +14,6 @@ export class ApisPageComponent implements OnInit{
   tablas: string[] = [];
   camposTabla: string[] = [];
 
-  user: any | null = null;
-
   tablaSeleccionada: string = '';
 
   constructor(
@@ -26,7 +24,7 @@ export class ApisPageComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-      if (this.loginService.esAdmin === false) {
+      if (this.loginService.getAdmin() === false) {
         // Redirigir al usuario a la página de inicio (Home)
         this.router.navigate(['/newCoup/home']); 
       }
