@@ -63,8 +63,7 @@ export class RegisterService implements OnInit{
     } catch (error) {
         console.error('Error al llamar a la API:', error);
     }
-}
+  }
 
-  
 }
 

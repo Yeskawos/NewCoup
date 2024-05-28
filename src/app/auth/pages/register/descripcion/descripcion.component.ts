@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../../../../services/registerService/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +20,6 @@ export class DescripcionComponent implements OnInit{
   base64Image: string | undefined;
 
   constructor(
-    private http: HttpClient,
     private fb: FormBuilder,
     private registerService: RegisterService,
     private router: Router,
