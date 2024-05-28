@@ -1,28 +1,28 @@
-<!-- <div *ngIf="user; else noUser" class="card" style="width: 18rem;">
-    <img *ngIf="user.rutaFotos" [src]="user.rutaFotos" class="card-img-top" alt="Foto de perfil">
-    <div class="card-body">
-      <h5 class="card-title">Perfil de {{ user.nombreUsuario }}</h5>
+<div class="row align-items-center justify-content-center" *ngIf="user; else noUser">
+  <div class="col-12 col-sm-6 col-md-4 mt-5 text-center">
+      <img *ngIf="user.rutaFotos" [src]="user.rutaFotos" style="width: 100%;" class="card-img-top" alt="Foto de perfil">
+  </div>
+  <div class="col-12 col-sm-6 col-md-4 mt-5 text-center">
+      <h1 class="card-title">{{ user.nombreUsuario }}, {{ user.edad }}</h1>
+      <h3 class="card-subtitle">{{ user.descripcion }}</h3>
       <p class="card-text"><strong>Género:</strong> {{ user.genero }}</p>
-      <p class="card-text"><strong>Edad:</strong> {{ user.edad }}</p>
-      <p class="card-text"><strong>Descripción:</strong> {{ user.descripcion }}</p>
       <p class="card-text"><strong>Intereses:</strong> {{ user.intereses }}</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-4 mt-5" *ngFor="let publicacion of publicaciones">
+    <div class="image-container">
+      <img [src]="publicacion.Foto" alt="Foto de la publicación" class="image">
+      <div class="overlay">
+        <div class="text">{{ publicacion.descripcion }}</div>
+      </div>
     </div>
   </div>
-  <ng-template #noUser>
-    <p>No se encontró ningún usuario en el almacenamiento local.</p>
-  </ng-template> -->
-
-<div class="row" *ngIf="user; else noUser">
-    <div class="col-6">
-        <img *ngIf="user.rutaFotos" [src]="user.rutaFotos" style="width: 400px; margin-left: 35%;" class="card-img-top" alt="Foto de perfil">
-    </div>
-    <div class="col-6">
-        <h1 class="card-title">{{ user.nombreUsuario }}, {{ user.edad }}</h1>
-        <h3 class="card-subtitle">{{ user.descripcion }}</h3>
-        <p class="card-text"><strong>Género:</strong> {{ user.genero }}</p>
-        <p class="card-text"><strong>Intereses:</strong> {{ user.intereses }}</p>
-    </div>
 </div>
+
+
+
 
 <ng-template #noUser>
     <p>No se encontró ningún usuario en el almacenamiento local.</p>

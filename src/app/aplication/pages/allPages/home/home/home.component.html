@@ -1,18 +1,22 @@
 <div class="row">
-    <div class="col-4 text-center" style="border: 1px white solid;" 
+    <div class="col-3 d-flex justify-content-center align-items-center" style="border: 1px white solid;"
         (dragover)="onDragOver($event, 'dislike')" 
         (drop)="onDrop($event, 'dislike')" 
         (dragleave)="onDragLeave('dislike')">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore doloribus doloremque ullam sed vitae! A fuga repellat odio, neque, animi dignissimos pariatur veniam similique optio tempora in quam, autem vero.</p>
+        <!-- Contenedor de dislike -->
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
-    <div class="col-4 d-flex justify-content-center" style="border: 1px white solid;">
+    <div class="col-6 d-flex justify-content-center" style="border: 1px white solid;">
+        <!-- Contenedor de la tarjeta -->
         <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable" draggable="true" 
         (drag)="onDrag($event)" 
         (dragend)="onDragEnd($event)"></app-card>
     </div>
-    <div class="col-4 text-center" style="border: 1px white solid;" 
+    <div class="col-3 d-flex justify-content-center align-items-center" style="border: 1px white solid;" 
         (dragover)="onDragOver($event, 'like')" 
         (drop)="onDrop($event, 'like')" 
         (dragleave)="onDragLeave('like')">
+        <!-- Contenedor de like -->
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
 </div>
