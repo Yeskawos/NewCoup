@@ -12,24 +12,24 @@ export class NavbarComponent implements OnInit{
   esAdmin: boolean = false;
 
   listaAdmin = [
-    { route: '/newCoup/home', label: 'Inicio' },
-    { route: '/newCoup/likes', label: 'Likes' },
-    { route: '/newCoup/mensajeria', label: 'Mensajería' },
-    { route: '/newCoup/planEstaNoche', label: 'Plan para Esta Noche' },
-    { route: '/newCoup/profile', label: 'Perfil' },
-    { route: '/newCoup/publicaciones', label: 'Publicaciones' },
-    { route: '/newCoup/apis', label: 'APIs' },
-    { route: '/newCoup/manageUsers', label: 'Gestionar Usuarios' },
-    { route: '/newCoup/reports', label: 'Reportes' }
+    { route: '/newCoup/home', label: 'Inicio', icon: 'home' },
+    { route: '/newCoup/likes', label: 'Likes', icon: 'favorite' },
+    { route: '/newCoup/mensajeria', label: 'Mensajería', icon: 'send' },
+    { route: '/newCoup/planEstaNoche', label: 'Plan para Esta Noche', icon: 'favorite' },
+    { route: '/newCoup/profile', label: 'Perfil', icon: 'account_circle' },
+    { route: '/newCoup/publicaciones', label: 'Publicaciones', icon: 'add' },
+    { route: '/newCoup/apis', label: 'APIs', icon: 'lock' },
+    { route: '/newCoup/manageUsers', label: 'Gestionar Usuarios', icon: 'lock' },
+    { route: '/newCoup/reports', label: 'Reportes', icon: 'lock' }
   ];
 
   lista = [
-    { route: '/newCoup/home', label: 'Inicio' },
-    { route: '/newCoup/likes', label: 'Likes' },
-    { route: '/newCoup/mensajeria', label: 'Mensajería' },
-    { route: '/newCoup/planEstaNoche', label: 'Plan para Esta Noche' },
-    { route: '/newCoup/profile', label: 'Perfil' },
-    { route: '/newCoup/publicaciones', label: 'Publicaciones' }
+    { route: '/newCoup/home', label: 'Inicio', icon: 'home' },
+    { route: '/newCoup/likes', label: 'Likes', icon: 'favorite' },
+    { route: '/newCoup/mensajeria', label: 'Mensajería', icon: 'send' },
+    { route: '/newCoup/planEstaNoche', label: 'Plan para Esta Noche', icon: 'favorite' },
+    { route: '/newCoup/profile', label: 'Perfil', icon: 'account_circle' },
+    { route: '/newCoup/publicaciones', label: 'Publicaciones', icon: 'add' }
   ]
 
   constructor(

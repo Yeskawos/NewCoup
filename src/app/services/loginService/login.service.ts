@@ -56,6 +56,7 @@ export class LoginService{
     this.user = null;
     this.esAdmin = false
     localStorage.removeItem('user');
+    localStorage.removeItem('userActual');
   }
 
   getAdmin(): boolean {

@@ -3,11 +3,13 @@
     <ng-container *ngIf="esAdmin">
       <button *ngFor="let page of listaAdmin" [routerLink]="page.route" mat-button>
         {{ page.label }}
+        <span class="material-icons" style="width: 20px; display: flex; float: right;">{{ page.icon }}</span>
       </button>
     </ng-container> 
     <ng-container *ngIf="!esAdmin">
       <button *ngFor="let page of lista" [routerLink]="page.route" mat-button>
         {{ page.label }}
+        <span class="material-icons" style="width: 20px; display: flex; float: right;">{{ page.icon }}</span>
       </button>
     </ng-container>      
   </mat-sidenav>
@@ -17,7 +19,7 @@
       <button mat-icon-button (click)="sidenav.toggle()" [ngClass]="{ 'open': sidenav.opened }" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="app-title">Mi Aplicación</span>
+      <span class="app-title">NewCoup</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="logout()" class="logout-button">
         <mat-icon>logout</mat-icon>

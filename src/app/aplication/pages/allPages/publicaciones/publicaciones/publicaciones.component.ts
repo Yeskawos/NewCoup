@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewPublicationService } from '../../../../services/new-publication.service';
 import { DatosPublicacion } from '../../../../../interfaces/publicacion.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publicaciones',
@@ -16,7 +17,11 @@ export class PublicacionesComponent implements OnInit {
   imageUrl: string | ArrayBuffer | null = null;
   base64Image: string | undefined;
 
-  constructor(private fb: FormBuilder, private publicacionesService: NewPublicationService) {
+  constructor(
+    private fb: FormBuilder, 
+    private publicacionesService: NewPublicationService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -63,6 +68,7 @@ export class PublicacionesComponent implements OnInit {
     if (this.formulario.valid) {
       this.datosFormulario.descripcion = this.formulario.get('descripcion')!.value;
       this.publicacionesService.introducirDatos(this.datosFormulario);
+      this.router.navigate(['/newCoup/home'])
     } else {
       alert('Formulario inválido');
     }

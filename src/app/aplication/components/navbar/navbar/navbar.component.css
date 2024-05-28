@@ -36,12 +36,13 @@ mat-sidenav p {
 }
 
 .menu-button.open {
-  transform: translateX(220px); /* Ajustar según el ancho del sidenav */
+  transform: translateX(230px); /* Ajustar según el ancho del sidenav */
 }
 
 .app-title {
   flex: 1;
   text-align: center; /* Centrar el texto del título */
+  margin-left: 20px;
   font-size: 20px; /* Ajustar el tamaño de fuente si es necesario */
 }
 

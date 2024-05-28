@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerUsuarioService } from '../../../../services/obtenerUsuario/obtener-usuario.service';
+import { DarLikeService } from '../../../../services/dar-like.service';
+import { CrearCoincidenciaService } from '../../../../services/crear-coincidencia.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,14 @@ export class HomeComponent implements OnInit{
 
   constructor( 
     private userService: ObtenerUsuarioService,
+    private likesService: DarLikeService,
+    private crearCoincidenciaService: CrearCoincidenciaService
   ){}
 
   ngOnInit(): void {
-    this.loadUser();
+    setTimeout(() => {
+      this.loadUser();
+    }, 100);
   }
 
   onDrag(event: DragEvent): void {
@@ -47,36 +53,75 @@ export class HomeComponent implements OnInit{
     document.getElementById(targetId)?.classList.remove('dragover');
     
     if (targetId === 'like') {
-      this.loadUser();
+      this.addLike();
+      this.userService.getUserByPreference();
+      setTimeout(() => {
+        this.loadUser();
+      }, 100);
       console.log("like");
     } else if (targetId === 'dislike') {
-      this.loadUser();
+      this.userService.getUserByPreference();
+      setTimeout(() => {
+        this.loadUser();
+      }, 100);
       console.log("dislike");
     }
   }  
 
 
   loadUser(): void {
-    this.userService.getUserByPreference()
-    .subscribe(
-      response => {
-        if (response.error) {
-          console.error('Error:', response.error);
-        } else {
-          if (!this.userService.getIds().includes(response.id_Usuario)) {
-            this.user = response;
-            this.userService.addUserId(response.id_Usuario);
-            if (this.user.imagenBase64) {
-              this.imageUrl = this.user.imagenBase64;
-            }
-          }
+    const user = localStorage.getItem('userActual');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      console.log(parsedUser)
+      if (!this.userService.getIds().includes(parsedUser.id_Usuario)) {
+        this.user = parsedUser;
+        this.userService.addUserId(parsedUser.id_Usuario);
+        if (this.user.imagenBase64) {
+          this.imageUrl = this.user.imagenBase64;
         }
-      },
-      error => {
-        console.error('Error al obtener el usuario:', error);
+      }else{
+        this.user = parsedUser;
+        if (this.user.imagenBase64) {
+          this.imageUrl = this.user.imagenBase64;
+        }
       }
-    );
+    } else {
+      console.error('No se encontró ningún usuario actual en el almacenamiento local.');
+    }
     console.log(this.userService.ids);
+  }
+
+  addLike() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      var user = JSON.parse(userData);
+      var id_Usuario1 = this.user.id_Usuario; 
+
+      this.likesService.addLike(id_Usuario1).subscribe(response => {
+        console.log('Respuesta de la API:', response);
+      }, error => {
+        console.error('Error al agregar el like:', error);
+      });
+    } else {
+      console.error('No se encontró ningún usuario en el almacenamiento local.');
+    }
+
+    if (user.likes) {
+      const likedUserIds = user.likes.split(',').map((id: any) => parseInt(id.trim(), 10)).filter((id: any) => !isNaN(id));
+      if(likedUserIds.includes(this.user.id_Usuario)){
+        this.crearCoincidenciaService.crearCoincidencia(this.user.id_Usuario, user.id_Usuario).subscribe(
+          response => {
+              console.log('Coincidencia creada exitosamente:', response);
+          },
+          error => {
+              console.error('Error al crear la coincidencia:', error);
+          }
+      );
+      }
+    } else {
+        console.error('No se encontraron likes en el almacenamiento local');
+    }
   }
 
 }
