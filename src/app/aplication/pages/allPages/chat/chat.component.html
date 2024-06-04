@@ -1,0 +1,12 @@
+<div class="mensajes-container">
+  <div *ngFor="let mensaje of mensajes" class="mensaje-item">
+    <div [ngClass]="{ 'remitente': mensaje.id_UsuarioRemitente === id_Usuario, 'recibe': mensaje.id_UsuarioRemitente !== id_Usuario }">
+      <p>{{ mensaje.contenido }}</p>
+      <small>{{ mensaje.fecha | date: 'short' }}</small>
+    </div>
+  </div>
+
+  <div class="enviar-mensaje-container">
+    <app-enviarmensaje></app-enviarmensaje>
+  </div>
+</div>

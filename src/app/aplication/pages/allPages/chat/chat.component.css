@@ -1,0 +1,57 @@
+.remitente {
+    text-align: right;
+    background-color: #DCF8C6; 
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+  }
+  
+  .recibe {
+    text-align: left;
+    background-color: #E0E0E0; 
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+  }
+  
+.enviar-mensaje-container {
+  position: fixed; 
+  bottom: 20px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  background-color: #fff; 
+  padding: 20px; 
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
+  transition: opacity 0.3s; 
+  opacity: 0.5; 
+}
+
+.enviar-mensaje-container:focus-within {
+  opacity: 1; 
+  width: 95%;
+  left: 49%;
+}
+
+.enviar-mensaje-input {
+  width: 100%; 
+  padding: 10px; 
+  border: none; 
+  border-bottom: 1px solid #ccc; 
+  outline: none; 
+}
+
+.enviar-mensaje-button {
+  margin-top: 10px; 
+  background-color: #007bff; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.enviar-mensaje-button:disabled {
+  background-color: #ccc; 
+  cursor: not-allowed; 
+}

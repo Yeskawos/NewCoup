@@ -10,6 +10,7 @@ import { PlanEstaNocheComponent } from './pages/allPages/planEstaNoche/plan-esta
 import { ProfileComponent } from './pages/allPages/profile/profile/profile.component';
 import { PublicacionesComponent } from './pages/allPages/publicaciones/publicaciones/publicaciones.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+import { ChatComponent } from './pages/allPages/chat/chat.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'mensajeria',
         component: MensajeriaComponent
+      },
+      {
+        path: 'mensajeria/:id',
+        component: ChatComponent
       },
       {
         path: 'planEstaNoche',

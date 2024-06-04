@@ -55,17 +55,8 @@ export class MensajeriaComponent implements OnInit{
     }
   }
 
-  // goToChat(id: number): void {
-  //   this.router.navigate(['/mensajeria', id]);
-  // }
-
-
-  // getIdCoincidenciaByUsuario2(id_Usuario2: any) {
-  //   console.log(id_Usuario2)
-  //   this.coincidencias.forEach(element => {
-  //     console.log('element', element.id_Usuario2)
-  //   });
-  //   return 0;
-  // }
+  goToChat(id: number): void {
+    this.router.navigate(['/newCoup/mensajeria', id]);
+  }
   
 }

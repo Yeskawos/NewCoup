@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApisPageComponent } from './pages/admin/apis-page/apis-page.component';
 import { ReportsPageComponent } from './pages/admin/reports/reports-page/reports-page.component';
 import { HomeComponent } from './pages/allPages/home/home/home.component';
@@ -17,6 +17,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CardComponent } from './components/cards/card/card.component';
+import { ChatComponent } from './pages/allPages/chat/chat.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EnviarmensajeComponent } from './components/enviarmensaje/enviarmensaje.component';
 
 
 @NgModule({
@@ -32,15 +35,18 @@ import { CardComponent } from './components/cards/card/card.component';
     PublicacionesComponent,
     NavbarComponent,
     CardComponent,
+    ChatComponent,
+    EnviarmensajeComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatSidenavModule,
+    MatSidenavModule, 
     MatButtonModule,
     MatIconModule,
+    FormsModule,
   ],
 })
 export class AplicationModule { }

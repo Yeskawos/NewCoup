@@ -1,0 +1,32 @@
+/* Estilos para el contenedor del formulario */
+.form-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el input de texto */
+  .input-text {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para el botón */
+  .btn-enviar {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-enviar:hover {
+    background-color: #0056b3;
+  }
+  

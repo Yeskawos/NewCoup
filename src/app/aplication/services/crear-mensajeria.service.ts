@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CrearMensajeriaService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/mensajeria/crearChat.php'; // Ajusta la URL según sea necesario
+  private apiUrl = 'http://localhost/TFG/APIS/mensajeria/crearChat.php'; 
 
   constructor(private http: HttpClient) { }
 
