@@ -1,4 +1,4 @@
-<div class="mensajes-container">
+<div class="mensajes-container" *ngIf="mensajes;else noUsers">
   <div *ngFor="let mensaje of mensajes" class="mensaje-item">
     <div [ngClass]="{ 'remitente': mensaje.id_UsuarioRemitente === id_Usuario, 'recibe': mensaje.id_UsuarioRemitente !== id_Usuario }">
       <p>{{ mensaje.contenido }}</p>
@@ -10,3 +10,13 @@
     <app-enviarmensaje></app-enviarmensaje>
   </div>
 </div>
+
+
+<ng-template class="mensajes-container" #noUsers>
+  <p>No habéis intercambiado mensajes aún, ¡Da el primer paso!</p>
+
+  <div class="enviar-mensaje-container">
+    <app-enviarmensaje></app-enviarmensaje>
+  </div>
+</ng-template> 
+

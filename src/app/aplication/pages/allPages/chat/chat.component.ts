@@ -8,7 +8,7 @@ import { ObtenerMensajesService } from '../../../services/obtener-mensajes.servi
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  mensajes: any[] = [];
+  mensajes?: any[];
   id_Usuario: number;
   chatId?: number;
   intervalId: any;

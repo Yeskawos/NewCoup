@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav #sidenav mode="side" opened="false"> 
     <ng-container *ngIf="esAdmin">
       <button *ngFor="let page of listaAdmin" [routerLink]="page.route" mat-button>
         {{ page.label }}
@@ -26,7 +26,7 @@
       </button>
     </mat-toolbar>
     <!-- Contenido principal de la aplicación -->
-    <div class="content">
+    <div class="content" (click)="sidenav.close()">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
