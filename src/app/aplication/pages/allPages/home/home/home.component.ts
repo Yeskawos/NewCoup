@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit{
   }  
 
 
-  loadUser(): void {
+  async loadUser() {
     const user = localStorage.getItem('userActual');
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -87,6 +87,10 @@ export class HomeComponent implements OnInit{
         }
       }
     } else {
+      this.userService.getUserByPreference();
+      await setTimeout(() => {
+        this.loadUser();
+      }, 200);
       console.error('No se encontró ningún usuario actual en el almacenamiento local.');
     }
     console.log(this.userService.ids);

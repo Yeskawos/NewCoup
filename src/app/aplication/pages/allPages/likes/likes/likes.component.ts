@@ -8,7 +8,7 @@ import { UserService } from '../../../../services/user.service';
 })
 export class LikesComponent {
 
-  likedUsers: any[] = [];
+likedUsers: any[] = [];
 
   constructor(private userService: UserService) { }
 
@@ -19,7 +19,8 @@ export class LikesComponent {
         if (user.likes) {
             const likedUserIds = user.likes.split(',').map((id: any) => parseInt(id.trim(), 10)).filter((id: any) => !isNaN(id));
             console.log( likedUserIds);
-            this.userService.getUsersByIds(likedUserIds).subscribe(
+            this.userService.getUsersByIds(likedUserIds)
+            .subscribe(
                 userResponse => {
                     if (userResponse.success) {
                         this.likedUsers = userResponse.usuarios;
