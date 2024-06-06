@@ -11,7 +11,7 @@ export class EnviarCorreoServiceService {
   ) { }
 
   enviarCorreo(correo: string) {
-    return this.http.get<any>('http://localhost/TFG/correo5.php?correo=' + correo); //'http://localhost/TFG/correo5.php?correo='
+    return this.http.get<any>('https://newcoup.es/PHP/correo5.php?correo=' + correo); //'http://localhost/TFG/correo5.php?correo='
   }
   
   

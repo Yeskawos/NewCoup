@@ -12,7 +12,8 @@ export class ObtenerTablasServiceService {
   ) { }
 
   obtenerTablas(): Observable<any> {
-    return this.http.get<any>('http://localhost/TFG/APIS/obtenerTablas/tablas.php');
+    // return this.http.get<any>('http://localhost/TFG/APIS/obtenerTablas/tablas.php');
+    return this.http.get<any>('https://newcoup.es/PHP/APIS/obtenerTablas/tablas.php');
   }
 
 }

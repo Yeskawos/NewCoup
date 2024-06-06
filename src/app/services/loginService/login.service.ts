@@ -7,7 +7,9 @@ import { Observable, catchError, map, of } from 'rxjs';
 })
 export class LoginService{
 
-  private apiUrl = 'http://localhost/TFG/APIS/login/login.php';  // Actualiza esto con la ruta correcta a tu API
+  // private apiUrl = 'http://localhost/TFG/APIS/login/login.php';  
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/login/login.php'
   private user: any = {};
 
   private esAdmin: boolean = false;

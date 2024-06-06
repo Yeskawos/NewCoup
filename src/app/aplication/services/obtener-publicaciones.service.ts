@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ObtenerPublicacionesService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/publicaciones/getPublicaciones.php';
+  // private apiUrl = 'http://localhost/TFG/APIS/publicaciones/getPublicaciones.php';
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/publicaciones/getPublicaciones.php'
 
   constructor(private http: HttpClient) { }
 

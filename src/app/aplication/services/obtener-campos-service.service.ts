@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class ObtenerCamposServiceService {
 
-  apiUrl: string = 'http://localhost/TFG/APIS/obtenerTablas/campos.php';
+  // apiUrl: string = 'http://localhost/TFG/APIS/obtenerTablas/campos.php';
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/obtenerTablas/campos.php'
 
   constructor(
     private http: HttpClient

@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class DarLikeService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/likes/darLike.php'; // Cambia esta URL según tu configuración
+  // private apiUrl = 'http://localhost/TFG/APIS/likes/darLike.php'; 
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/likes/darLike.php'
 
   constructor(private http: HttpClient) { }
 

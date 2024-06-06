@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ObtenerUsuarioService{
 
-  private apiUrl = 'http://localhost/TFG/APIS/ObtenerDatosUsuario/getUserByPreference.php';
+  // private apiUrl = 'https://localhost/TFG/APIS/ObtenerDatosUsuario/getUserByPreference.php';
+  
+  private apiUrl = 'https://newcoup.es/PHP/APIS/ObtenerDatosUsuario/getUserByPreference.php';
   ids: number[] = [];
 
   preferencias: string = '';

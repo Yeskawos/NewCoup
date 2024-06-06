@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private userInfoUrl = 'http://localhost/TFG/APIS/getUserById/getUserById.php'; // Nueva API para obtener usuarios por IDs
+  // private userInfoUrl = 'http://localhost/TFG/APIS/getUserById/getUserById.php'; 
+
+  private userInfoUrl = 'https://newcoup.es/PHP/APIS/getUserById/getUserById.php';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class CrearCoincidenciaService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/likes/coincidencias.php'; // Reemplaza con la URL de tu API
+  // private apiUrl = 'http://localhost/TFG/APIS/likes/coincidencias.php'; 
+
+  private apiUrl = 'https://newcoup/PHP/APIS/ObtenerDatosUsuario/getUserByPreference.php';
 
   constructor(private http: HttpClient) { }
 

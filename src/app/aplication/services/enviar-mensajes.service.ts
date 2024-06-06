@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class EnviarMensajesService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/mensajeria/enviarMensaje.php';
+  // private apiUrl = 'http://localhost/TFG/APIS/mensajeria/enviarMensaje.php';
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/mensajeria/enviarMensaje.php'
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,9 @@ import { DatosPublicacion } from '../../interfaces/publicacion.interface';
 })
 export class NewPublicationService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/publicaciones/addPublicacion.php';
+  // private apiUrl = 'http://localhost/TFG/APIS/publicaciones/addPublicacion.php';
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/publicaciones/addPublicacion.php';
 
   base64Image: string = '';
   datos: DatosPublicacion = {};

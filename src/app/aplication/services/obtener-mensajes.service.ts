@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ObtenerMensajesService {
 
-  private apiUrl = 'http://localhost/TFG/APIS/mensajeria/obtenerMensajes.php'; 
+  // private apiUrl = 'http://localhost/TFG/APIS/mensajeria/obtenerMensajes.php'; 
+
+  private apiUrl = 'https://newcoup.es/PHP/APIS/mensajeria/obtenerMensajes.php'
 
   constructor(private http: HttpClient) {}
 
