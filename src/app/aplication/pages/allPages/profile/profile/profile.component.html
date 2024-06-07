@@ -13,6 +13,7 @@
   <div class="col-12 col-sm-6 col-md-4 mt-5" *ngFor="let publicacion of publicaciones">
     <div class="image-container">
       <img [src]="publicacion.Foto" alt="Foto de la publicación" class="image">
+      <!-- <p *ngIf="publicacion.Foto">{{ publicacion.Foto }}</p> -->
       <div class="overlay">
         <div class="text">{{ publicacion.descripcion }}</div>
       </div>

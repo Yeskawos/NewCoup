@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import { ObtenerPublicacionesService } from '../../../../services/obtener-publicaciones.service';
 import { GetPublicacion } from '../../../../../interfaces/GetPublicacion.interface';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit{
 
   constructor(
     private userService: UserService,
-    private getPublicaciones: ObtenerPublicacionesService
+    private getPublicaciones: ObtenerPublicacionesService,
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit{
       const userId = user.id_Usuario;
       const userIdsArray = [userId]; // Metemos el id_Usuario en un array
 
-      this.userService.getUsersByIds(userIdsArray).subscribe(
+      this.userService.getUsersByIds(userIdsArray)
+      .subscribe(
         response => {
           if (response.success) {
             this.user = response.usuarios[0]; // Dado que solo hay un usuario
@@ -43,16 +45,17 @@ export class ProfileComponent implements OnInit{
     this.loadUserPosts();
   }
 
-  loadUserPosts(): void {
+  async loadUserPosts() {
     const userData = localStorage.getItem('user');
     if (userData) {
       const user = JSON.parse(userData);
       const userId = user.id_Usuario;
 
       // Llamar al servicio para obtener las publicaciones del usuario actual
-      this.getPublicaciones.getPublicaciones(userId)
+      await this.getPublicaciones.getPublicaciones(userId)
       .subscribe(
         (data: GetPublicacion[]) => {
+          console.log(data);
           this.publicaciones = data;
         },
         error => {

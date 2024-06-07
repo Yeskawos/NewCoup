@@ -1,22 +1,51 @@
 <div class="row">
-    <div class="col-3 d-flex justify-content-center align-items-center" style="border: 1px white solid;"
+    <div class="col-2 d-flex justify-content-center align-items-center d-none d-md-flex" style="border: 1px white solid;"
         (dragover)="onDragOver($event, 'dislike')" 
         (drop)="onDrop($event, 'dislike')" 
         (dragleave)="onDragLeave('dislike')">
         <!-- Contenedor de dislike -->
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="icon-container">
+            <mat-icon>clear</mat-icon> 
+        </div>
     </div>
-    <div class="col-6 d-flex justify-content-center" style="border: 1px white solid;">
+    <div class="col-6 d-flex justify-content-center d-none d-md-flex" style="border: 1px white solid;">
         <!-- Contenedor de la tarjeta -->
         <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable" draggable="true" 
         (drag)="onDrag($event)" 
         (dragend)="onDragEnd($event)"></app-card>
     </div>
-    <div class="col-3 d-flex justify-content-center align-items-center" style="border: 1px white solid;" 
+    <div class="col-6 d-flex justify-content-center align-items-center d-none d-md-flex" style="border: 1px white solid;"
         (dragover)="onDragOver($event, 'like')" 
         (drop)="onDrop($event, 'like')" 
         (dragleave)="onDragLeave('like')">
         <!-- Contenedor de like -->
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="icon-container">
+            <mat-icon>favorite</mat-icon>
+        </div>
+    </div>
+</div>
+
+<!-- Para dispositivos móviles -->
+<div class="row d-md-none my-3">
+    <div class="col-12 d-flex justify-content-center" style="border: 1px white solid;">
+        <!-- Contenedor de la tarjeta -->
+        <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable"></app-card>
+    </div>
+</div>
+<div class="row d-md-none">
+    <!-- Botón de dislike -->
+    <div class="col-6 d-flex justify-content-center align-items-center mobile-only" style="border: 1px white solid;"
+        (click)="onDislike($event)">
+        <div class="icon-container">
+            <mat-icon style="font-size: 24px;">clear</mat-icon> <!-- Icono "x" -->
+        </div>
+    </div>
+
+    <!-- Botón de like -->
+    <div class="col-6 d-flex justify-content-center align-items-center mobile-only" style="border: 1px white solid;" 
+        (click)="onLike($event)">
+        <div class="icon-container">
+            <mat-icon style="font-size: 24px;">favorite</mat-icon> <!-- Icono corazón -->
+        </div>
     </div>
 </div>

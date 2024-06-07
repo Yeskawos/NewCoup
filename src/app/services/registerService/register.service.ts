@@ -58,7 +58,7 @@ export class RegisterService implements OnInit{
         const response: any = await this.http.post(this.apiUrl, this.datos).toPromise();
         console.log('Respuesta de la API:', response);
         if (response.success) {
-            // console.log('Base64 de la imagen:', response.rutaFotos);
+            console.log('Base64 de la imagen:', response.rutaFotos);
         } else {
             alert(response.error);
         }

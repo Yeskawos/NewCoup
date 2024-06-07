@@ -22,11 +22,19 @@ export class LoginService{
   }
 
   login(correoElectronico: string, contrasenya: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { correoElectronico, contrasenya }).pipe(
+    return this.http.post<any>(this.apiUrl, { correoElectronico, contrasenya })
+    .pipe(
       map(response => {
+        if (response.status === 200) {
+          console.log('Hola');
+          this.user = response.user;
+          // console.log(this.user);
+          // Guarda el usuario en localStorage después de iniciar sesión exitosamente
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
         if (response.success) {
           this.user = response.user;
-          console.log(this.user);
+          // console.log(this.user);
           // Guarda el usuario en localStorage después de iniciar sesión exitosamente
           localStorage.setItem('user', JSON.stringify(this.user));
         }

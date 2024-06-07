@@ -1,4 +1,4 @@
 <div class="form-container">
-    <input type="text" class="input-text" placeholder="Escribe tu mensaje..." [(ngModel)]="mensaje">
-    <button class="btn-enviar" (click)="enviarMensaje()">Enviar</button>
+    <input type="text" class="input-text" placeholder="Escribe tu mensaje..." [(ngModel)]="mensaje" (keyup.enter)="enviarMensaje()">
+    <input type="submit" class="btn-enviar" (click)="enviarMensaje()" value="Enviar">
 </div>

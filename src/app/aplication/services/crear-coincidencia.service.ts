@@ -9,7 +9,7 @@ export class CrearCoincidenciaService {
 
   // private apiUrl = 'http://localhost/TFG/APIS/likes/coincidencias.php'; 
 
-  private apiUrl = 'https://newcoup/PHP/APIS/ObtenerDatosUsuario/getUserByPreference.php';
+  private apiUrl = 'https://newcoup.es/PHP/APIS/likes/coincidencias.php';
 
   constructor(private http: HttpClient) { }
 

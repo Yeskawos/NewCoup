@@ -35,7 +35,6 @@ function crearTablaUsuarios( $conexion ) {
             fechaNacimiento Date,
             localizacion Varchar(20),
             preferencias Varchar(255),
-            intereses Varchar(255),
             descripcion Varchar(255),
             likes Varchar(255),
             rutaFotos LONGTEXT

@@ -57,16 +57,35 @@ export class HomeComponent implements OnInit{
       this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
-      }, 100);
+      }, 300);
       console.log("like");
     } else if (targetId === 'dislike') {
       this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
-      }, 100);
+      }, 300);
       console.log("dislike");
     }
   }  
+
+  onLike(event: Event){
+    event.preventDefault();
+    this.addLike();
+      this.userService.getUserByPreference();
+      setTimeout(() => {
+        this.loadUser();
+      }, 300);
+      console.log("like");
+  }
+
+  onDislike(event: Event){
+    event.preventDefault();
+    this.userService.getUserByPreference();
+      setTimeout(() => {
+        this.loadUser();
+      }, 300);
+      console.log("dislike");
+  }
 
 
   async loadUser() {
@@ -96,13 +115,14 @@ export class HomeComponent implements OnInit{
     console.log(this.userService.ids);
   }
 
-  addLike() {
+  async addLike() {
     const userData = localStorage.getItem('user');
     if (userData) {
       var user = JSON.parse(userData);
       var id_Usuario1 = this.user.id_Usuario; 
 
-      this.likesService.addLike(id_Usuario1).subscribe(response => {
+      await this.likesService.addLike(id_Usuario1)
+      .subscribe(response => {
         console.log('Respuesta de la API:', response);
       }, error => {
         console.error('Error al agregar el like:', error);
@@ -114,7 +134,8 @@ export class HomeComponent implements OnInit{
     if (user.likes) {
       const likedUserIds = user.likes.split(',').map((id: any) => parseInt(id.trim(), 10)).filter((id: any) => !isNaN(id));
       if(likedUserIds.includes(this.user.id_Usuario)){
-        this.crearCoincidenciaService.crearCoincidencia(this.user.id_Usuario, user.id_Usuario).subscribe(
+        await this.crearCoincidenciaService.crearCoincidencia(this.user.id_Usuario, user.id_Usuario)
+        .subscribe(
           response => {
               console.log('Coincidencia creada exitosamente:', response);
           },

@@ -30,7 +30,8 @@ export class EnviarmensajeComponent implements OnInit{
 
   enviarMensaje(): void {
     console.log('Mensaje enviado:', this.mensaje);
-    this.enviarMensajeService.enviarMensaje(this.id_Usuario, this.chatId!, this.mensaje)
+    if(this.mensaje != ''){
+      this.enviarMensajeService.enviarMensaje(this.id_Usuario, this.chatId!, this.mensaje)
       .subscribe(
         response => {
           console.log(response);
@@ -41,6 +42,7 @@ export class EnviarmensajeComponent implements OnInit{
       );
     // También puedes restablecer el campo del mensaje después de enviarlo
     this.mensaje = '';
+    }
   }
 
 }
