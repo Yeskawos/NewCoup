@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-2 d-flex justify-content-center align-items-center d-none d-lg-flex" style="border: 1px white solid;"
+    <div class="col-2 d-flex justify-content-center align-items-center d-none d-md-flex" style="border: 1px white solid;"
         (dragover)="onDragOver($event, 'dislike')" 
         (drop)="onDrop($event, 'dislike')" 
         (dragleave)="onDragLeave('dislike')">
@@ -8,14 +8,14 @@
             <mat-icon>clear</mat-icon>
         </div>
     </div>
-    <div class="col-8 d-flex justify-content-center d-none d-lg-flex" style="border: 1px white solid;">
+    <div class="col-8 d-flex justify-content-center d-none d-md-flex" style="border: 1px white solid;">
         <!-- Contenedor de la tarjeta -->
         <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable" draggable="true" 
         (drag)="onDrag($event)" 
         (dragend)="onDragEnd($event)"
         (click)="goToChat(user.id_Usuario)"></app-card>
     </div>
-    <div class="col-2 d-flex justify-content-center align-items-center d-none d-lg-flex" style="border: 1px white solid;" 
+    <div class="col-2 d-flex justify-content-center align-items-center d-none d-md-flex" style="border: 1px white solid;" 
         (dragover)="onDragOver($event, 'like')" 
         (drop)="onDrop($event, 'like')" 
         (dragleave)="onDragLeave('like')">
@@ -30,7 +30,7 @@
 <div class="row d-md-none my-3">
     <div class="col-12 d-flex justify-content-center" style="border: 1px white solid;">
 
-        <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable"></app-card>
+        <app-card [user]="user" [imageUrl]="imageUrl" id="capaArrastrable" (click)="goToChat(user.id_Usuario)"></app-card>
     </div>
 </div><br>
 <div class="row d-md-none">

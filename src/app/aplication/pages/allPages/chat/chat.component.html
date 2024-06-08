@@ -3,6 +3,11 @@
     <div [ngClass]="{ 'remitente': mensaje.id_UsuarioRemitente === id_Usuario, 'recibe': mensaje.id_UsuarioRemitente !== id_Usuario }">
       <p>{{ mensaje.contenido }}</p>
       <small>{{ mensaje.fecha | date: 'short' }}</small>
+
+      <button mat-icon-button class="delete-button" *ngIf="mensaje.id_UsuarioRemitente === id_Usuario" (click)="deleteMessage(mensaje.id_Mensaje)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
     </div>
   </div>
 

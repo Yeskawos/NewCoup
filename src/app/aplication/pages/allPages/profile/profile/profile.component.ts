@@ -3,6 +3,7 @@ import { UserService } from '../../../../services/user.service';
 import { ObtenerPublicacionesService } from '../../../../services/obtener-publicaciones.service';
 import { GetPublicacion } from '../../../../../interfaces/GetPublicacion.interface';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DeletePostService } from '../../../../services/delete-post.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit{
   constructor(
     private userService: UserService,
     private getPublicaciones: ObtenerPublicacionesService,
+    private deletePostService: DeletePostService,
   ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,19 @@ export class ProfileComponent implements OnInit{
     } else {
       console.error('No se encontró ningún usuario en el almacenamiento local.');
     }
+  }
+
+
+  deletePost(id_Publicacion: number): void {
+    this.deletePostService.deletePost(id_Publicacion)
+    .subscribe(
+      response => {
+        console.log('Publicación eliminada:', response);
+        this.loadUserPosts();
+      },
+      error => {
+        console.error('Error al eliminar la publicación:', error);
+      }
+    );
   }
 }

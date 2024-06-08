@@ -3,6 +3,7 @@ import { GetPublicacion } from '../../../../../interfaces/GetPublicacion.interfa
 import { UserService } from '../../../../services/user.service';
 import { ObtenerPublicacionesService } from '../../../../services/obtener-publicaciones.service';
 import { ActivatedRoute } from '@angular/router';
+import { DeletePostService } from '../../../../services/delete-post.service';
 
 @Component({
   selector: 'app-profile-visited',
@@ -57,4 +58,5 @@ export class ProfileVisitedComponent {
         }
       );
   }
+
 }

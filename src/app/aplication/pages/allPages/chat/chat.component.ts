@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ObtenerMensajesService } from '../../../services/obtener-mensajes.service';
+import { DeleteMessageService } from '../../../services/delete-message.service';
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +16,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private messageService: ObtenerMensajesService
+    private messageService: ObtenerMensajesService,
+    private eliminarMensajes: DeleteMessageService
   ) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.id_Usuario = user.id_Usuario;
@@ -50,5 +52,19 @@ export class ChatComponent implements OnInit {
   ngOnDestroy() {
     // Limpiar el intervalo cuando el componente se destruye
     clearInterval(this.intervalId);
+  }
+
+  deleteMessage(id_Mensaje: number): void {
+    this.eliminarMensajes.deleteMessage(id_Mensaje)
+    .subscribe(
+      response => {
+        console.log('Mensaje eliminado:', response);
+        // Maneja la respuesta y actualiza la interfaz según sea necesario
+      },
+      error => {
+        console.error('Error al eliminar el mensaje:', error);
+        // Maneja el error
+      }
+    );
   }
 }

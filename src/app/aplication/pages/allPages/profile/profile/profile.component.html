@@ -16,6 +16,9 @@
       <!-- <p *ngIf="publicacion.Foto">{{ publicacion.Foto }}</p> -->
       <div class="overlay">
         <div class="text">{{ publicacion.descripcion }}</div>
+        <button mat-icon-button (click)="deletePost(publicacion.id_Publicacion)" class="delete-button">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
   </div>

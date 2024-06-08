@@ -1,7 +1,7 @@
 <div *ngIf="usuariosCoincidencias.length > 0; else noCoincidencias">
     <div *ngFor="let usuario of usuariosCoincidencias[0].usuarios; let i = index" id="tarjeta">
-        <div class="usuario-card">
-            <img [src]="usuario.rutaFotos" alt="Foto de perfil" class="perfil-img" (click)="goToPerfil(usuario.id_Usuario)">
+        <div class="usuario-card" (click)="goToPerfil(usuario.id_Usuario)">
+            <img [src]="usuario.rutaFotos" alt="Foto de perfil" class="perfil-img">
             <h3>{{ usuario.nombreUsuario }}</h3>
             <p>ID: {{ usuario.id_Usuario }}</p>
             <p>Género: {{ usuario.genero }}</p>
