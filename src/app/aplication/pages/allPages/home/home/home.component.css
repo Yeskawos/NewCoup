@@ -1,14 +1,7 @@
-.icon-container img {
-    width: 10%;
-    height: 10%;
-    max-width: 200px; /* Ajusta el tamaño máximo según tus necesidades */
-    max-height: 200px;
-}
-
 .card-container {
     width: 100%;
     height: 100%;
-    max-width: 500px; /* Ajusta el tamaño máximo según tus necesidades */
+    max-width: 500px;
     max-height: 400px;
 }
 

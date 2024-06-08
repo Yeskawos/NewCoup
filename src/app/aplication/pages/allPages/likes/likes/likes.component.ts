@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-likes',
@@ -10,7 +11,10 @@ export class LikesComponent {
 
 likedUsers: any[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+) { }
 
   ngOnInit(): void {
     const userData = localStorage.getItem('user');
@@ -38,6 +42,10 @@ likedUsers: any[] = [];
     } else {
         console.error('No se encontró ningún usuario en el almacenamiento local');
     }
+}
+
+goToChat(id: number): void {
+    this.router.navigate(['/newCoup/profile', id]);
 }
 
 

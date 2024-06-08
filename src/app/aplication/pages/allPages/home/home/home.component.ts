@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ObtenerUsuarioService } from '../../../../services/obtenerUsuario/obtener-usuario.service';
 import { DarLikeService } from '../../../../services/dar-like.service';
 import { CrearCoincidenciaService } from '../../../../services/crear-coincidencia.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit{
   constructor( 
     private userService: ObtenerUsuarioService,
     private likesService: DarLikeService,
-    private crearCoincidenciaService: CrearCoincidenciaService
+    private crearCoincidenciaService: CrearCoincidenciaService,
+    private router: Router,
   ){}
 
   ngOnInit(): void {
@@ -147,6 +149,10 @@ export class HomeComponent implements OnInit{
     } else {
         console.error('No se encontraron likes en el almacenamiento local');
     }
+  }
+
+  goToChat(id: number): void {
+    this.router.navigate(['/newCoup/profile', id]);
   }
 
 }

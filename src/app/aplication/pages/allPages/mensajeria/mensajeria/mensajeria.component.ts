@@ -58,5 +58,9 @@ export class MensajeriaComponent implements OnInit{
   goToChat(id: number): void {
     this.router.navigate(['/newCoup/mensajeria', id]);
   }
+
+  goToPerfil(id: number): void {
+    this.router.navigate(['/newCoup/profile', id]);
+  }
   
 }

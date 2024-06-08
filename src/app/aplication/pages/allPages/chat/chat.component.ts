@@ -25,10 +25,9 @@ export class ChatComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.chatId = parseInt(params.get('id') || '0', 10);
       this.loadMessages();
-      // Iniciar el intervalo
       this.intervalId = setInterval(() => {
         this.loadMessages();
-      }, 1000); // Llama a loadMessages() cada segundo
+      }, 1000); 
     });
   }
 

@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/allPages/profile/profile/profile.compo
 import { PublicacionesComponent } from './pages/allPages/publicaciones/publicaciones/publicaciones.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { ChatComponent } from './pages/allPages/chat/chat.component';
+import { ProfileVisitedComponent } from './pages/allPages/profileVisited/profile-visited/profile-visited.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'profile/:id',
+        component: ProfileVisitedComponent
       },
       {
         path: 'publicaciones',

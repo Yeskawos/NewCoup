@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CardComponent } from './components/cards/card/card.component';
 import { ChatComponent } from './pages/allPages/chat/chat.component';
 import { EnviarmensajeComponent } from './components/enviarmensaje/enviarmensaje.component';
+import { ProfileVisitedComponent } from './pages/allPages/profileVisited/profile-visited/profile-visited.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { EnviarmensajeComponent } from './components/enviarmensaje/enviarmensaje
     CardComponent,
     ChatComponent,
     EnviarmensajeComponent,
+    ProfileVisitedComponent,
   ],
   imports: [
     CommonModule,

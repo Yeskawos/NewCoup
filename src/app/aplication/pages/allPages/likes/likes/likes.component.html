@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <div *ngIf="likedUsers.length > 0; else noLikes" class="row">
-        <div *ngFor="let user of likedUsers" class="user-card col-md-4">
+        <div *ngFor="let user of likedUsers" class="user-card col-md-4" (click)="goToChat(user.id_Usuario)">
           <img [src]="user.rutaFotos" alt="{{ user.nombreUsuario }}" class="user-photo">
           <h3>{{ user.nombreUsuario }}</h3>
           <p>{{ user.genero }}, {{ user.edad }}</p>
