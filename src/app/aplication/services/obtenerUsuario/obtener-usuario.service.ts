@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
 export class ObtenerUsuarioService{
 
   // private apiUrl = 'https://localhost/TFG/APIS/ObtenerDatosUsuario/getUserByPreference.php';
+  // private apiUrlLikes = 'http://localhost/TFG/APIS/likes/obtenerLikesId.php'; 
   
   private apiUrl = 'https://newcoup.es/PHP/APIS/ObtenerDatosUsuario/getUserByPreference.php';
+  private apiUrlLikes = 'https://newcoup.es/PHP/APIS/likes/obtenerLikesId.php'
+
   ids: number[] = [];
 
   preferencias: string = '';
@@ -21,7 +24,7 @@ export class ObtenerUsuarioService{
     this.getUserByPreference();
   }
 
-  getUserByPreference(): void {
+  async getUserByPreference() {
     const maxId = this.ids.length > 0 ? Math.max(...this.ids) : 0;
     
     // Obtener el objeto user del localStorage
@@ -41,10 +44,18 @@ export class ObtenerUsuarioService{
         .set('genero', this.preferencias)
         .set('id_Usuario', id_Usuario);
     this.http.get<any>(this.apiUrl, { params })
-    .subscribe(user => {
-      // Guardar el usuario en local storage
-      console.log("user", user);
-      this.saveUserToLocalStorage(user);
+    .subscribe(async user => {
+      // if(await this.isIdUserLiked(user.id_Usuario)){
+      //   this.addUserId(user.id_Usuario);
+      //   this.deleteUserFromLocalStorage();
+      //   this.getUserByPreference();
+      //   console.log("Ya has dado like");
+      // }else{
+        // Guardar el usuario en local storage
+        // console.log("user", user);
+        console.log("user", user.id_Usuario);
+        this.saveUserToLocalStorage(user);
+      // }
     }, error => {
       console.error('Error al obtener el usuario:', error);
     });
@@ -56,6 +67,12 @@ export class ObtenerUsuarioService{
     }
     // Guardar el nuevo usuario
     localStorage.setItem('userActual', JSON.stringify(user));
+  }
+
+  deleteUserFromLocalStorage(){
+    if (localStorage.getItem('userActual')) {
+      localStorage.removeItem('userActual');
+    }
   }
   
   
@@ -76,4 +93,28 @@ export class ObtenerUsuarioService{
     }
   }
 
+
+  isIdUserLiked(idUsuario: number) {
+    const userData = localStorage.getItem('user');
+    if(userData){
+      const user = JSON.parse(userData);
+      const id_Usuario = user.id_Usuario;
+
+      return this.http.post<any>(this.apiUrlLikes, { idUsuario })
+      .pipe(
+        map(data => {
+          if (data.success) {
+            const likes = data.likes;
+            return likes.includes(id_Usuario);
+          } else {
+            // Si la solicitud a la API no fue exitosa, retornar false
+            return false;
+          }
+        })
+      );
+    } else {
+      // Si no se encontró el usuario en el localStorage, retornar false
+      return of(false);
+    }
+  }
 }
