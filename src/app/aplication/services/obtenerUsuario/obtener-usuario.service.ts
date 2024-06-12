@@ -53,7 +53,7 @@ export class ObtenerUsuarioService{
       // }else{
         // Guardar el usuario en local storage
         // console.log("user", user);
-        console.log("user", user.id_Usuario);
+        // console.log("user", user.id_Usuario);
         this.saveUserToLocalStorage(user);
       // }
     }, error => {
@@ -78,7 +78,12 @@ export class ObtenerUsuarioService{
   
 
   addUserId(id: number): void {
-    this.ids.push(id);
+    if(id == undefined){
+      alert('o hay más usuarios para mostrar, mostrado usuarios repetidos.')
+      this.ids = [];
+    }else{
+      this.ids.push(id);
+    }
   }
 
   getIds(): number[] {

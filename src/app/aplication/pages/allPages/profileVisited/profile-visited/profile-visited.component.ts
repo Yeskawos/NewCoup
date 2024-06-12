@@ -50,7 +50,7 @@ export class ProfileVisitedComponent {
       await this.getPublicaciones.getPublicaciones(this.userId)
       .subscribe(
         (data: GetPublicacion[]) => {
-          console.log(data);
+          // console.log(data);
           this.publicaciones = data;
         },
         error => {

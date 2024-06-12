@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404Component } from './shared/errorPage/error404/error404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PortadaComponent } from './portada/portada/portada.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: '',
+    component: PortadaComponent
+  },
+  {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: '404'
   }
 ];
 

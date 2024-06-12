@@ -1,17 +1,17 @@
 <?
 include('../conexion/conexionBDD.php');  // conecta a la base de datos
 
-$conexion->query("CREATE DATABASE IF NOT EXISTS NewCoup");
+$conexion->query("CREATE DATABASE IF NOT EXISTS newcoup");
 
 //Llamada a las funciones
 crearTablaUsuarios( $conexion );
 crearTablaPublicacion($conexion);
-crearTablaHashtag($conexion);
-crearTablaHashtag_Usuario($conexion);
-crearTablaPublicacion_Hashtag($conexion);
+// crearTablaHashtag($conexion);
+// crearTablaHashtag_Usuario($conexion);
+// crearTablaPublicacion_Hashtag($conexion);
 crearTablaMensajes($conexion);
 crearTablaCoincidencias($conexion);
-crearTablaRelacion_Esporadica($conexion);
+// crearTablaRelacion_Esporadica($conexion);
 
 
 function crearTablaUsuarios( $conexion ) {
@@ -35,6 +35,7 @@ function crearTablaUsuarios( $conexion ) {
             fechaNacimiento Date,
             localizacion Varchar(20),
             preferencias Varchar(255),
+            -- intereses Varchar(255),
             descripcion Varchar(255),
             likes Varchar(255),
             rutaFotos LONGTEXT
@@ -59,7 +60,7 @@ function crearTablaPublicacion($conexion) {
             id_Publicacion INT AUTO_INCREMENT PRIMARY KEY,
             descripcion VARCHAR(255),
             fecha DATE,
-            rutaFoto VARCHAR(255),
+            rutaFoto longtext,
             id_Usuario INT,
             FOREIGN KEY (id_Usuario) REFERENCES Usuarios(id_Usuario) 
         )";
@@ -71,68 +72,68 @@ function crearTablaPublicacion($conexion) {
     }
 }
 
-function crearTablaHashtag($conexion) {
-    $conexion->select_db("NewCoup");
+// function crearTablaHashtag($conexion) {
+//     $conexion->select_db("NewCoup");
 
-    $resultado = $conexion->query("SELECT * FROM Hashtags");
-    if ($resultado !== false && $resultado->num_rows > 0) {
-        // La tabla ya existe, no es necesario hacer nada
-    } else {
-        $consulta = "CREATE TABLE Hashtags (
-            id_Hashtag INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(20) NOT NULL
-        )";
-        if ($conexion->query($consulta) === TRUE) {
-            echo "Tabla Hashtags creada exitosamente.";
-        } else {
-            echo "Error al crear la tabla Hashtags: " . $conexion->error;
-        }
-    }
-}
+//     $resultado = $conexion->query("SELECT * FROM Hashtags");
+//     if ($resultado !== false && $resultado->num_rows > 0) {
+//         // La tabla ya existe, no es necesario hacer nada
+//     } else {
+//         $consulta = "CREATE TABLE Hashtags (
+//             id_Hashtag INT AUTO_INCREMENT PRIMARY KEY,
+//             nombre VARCHAR(20) NOT NULL
+//         )";
+//         if ($conexion->query($consulta) === TRUE) {
+//             echo "Tabla Hashtags creada exitosamente.";
+//         } else {
+//             echo "Error al crear la tabla Hashtags: " . $conexion->error;
+//         }
+//     }
+// }
 
-function crearTablaHashtag_Usuario($conexion) {
-    $conexion->select_db("NewCoup");
+// function crearTablaHashtag_Usuario($conexion) {
+//     $conexion->select_db("NewCoup");
 
-    $resultado = $conexion->query("SELECT * FROM Usuario_Hashtags");
-    if ($resultado !== false && $resultado->num_rows > 0) {
-        // La tabla ya existe, no es necesario hacer nada
-    } else {
-        $consulta = "CREATE TABLE Usuario_Hashtags (
-            id_Hashtag INT,
-            id_Usuario INT,
-            PRIMARY KEY (id_Hashtag, id_Usuario),
-            FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
-            FOREIGN KEY (id_Usuario) REFERENCES Usuarios(id_Usuario)
-        )";        
-        if ($conexion->query($consulta) === TRUE) {
-            echo "Tabla Usuario_Hashtags creada exitosamente.";
-        } else {
-            echo "Error al crear la tabla Usuario_Hashtags: " . $conexion->error;
-        }
-    }
-}
+//     $resultado = $conexion->query("SELECT * FROM Usuario_Hashtags");
+//     if ($resultado !== false && $resultado->num_rows > 0) {
+//         // La tabla ya existe, no es necesario hacer nada
+//     } else {
+//         $consulta = "CREATE TABLE Usuario_Hashtags (
+//             id_Hashtag INT,
+//             id_Usuario INT,
+//             PRIMARY KEY (id_Hashtag, id_Usuario),
+//             FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
+//             FOREIGN KEY (id_Usuario) REFERENCES Usuarios(id_Usuario)
+//         )";        
+//         if ($conexion->query($consulta) === TRUE) {
+//             echo "Tabla Usuario_Hashtags creada exitosamente.";
+//         } else {
+//             echo "Error al crear la tabla Usuario_Hashtags: " . $conexion->error;
+//         }
+//     }
+// }
 
-function crearTablaPublicacion_Hashtag($conexion) {
-    $conexion->select_db("NewCoup");
+// function crearTablaPublicacion_Hashtag($conexion) {
+//     $conexion->select_db("NewCoup");
 
-    $resultado = $conexion->query("SELECT * FROM Publicacion_Hashtag");
-    if ($resultado !== false && $resultado->num_rows > 0) {
-        // La tabla ya existe, no es necesario hacer nada
-    } else {
-        $consulta = "CREATE TABLE Publicacion_Hashtag (
-            id_Publicacion INT,
-            id_Hashtag INT,
-            PRIMARY KEY (id_Hashtag, id_Publicacion),
-            FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
-            FOREIGN KEY (id_Publicacion) REFERENCES Publicaciones(id_Publicacion)
-        )";        
-        if ($conexion->query($consulta) === TRUE) {
-            echo "Tabla Publicacion_Hashtag creada exitosamente.";
-        } else {
-            echo "Error al crear la tabla Publicacion_Hashtag: " . $conexion->error;
-        }
-    }
-}
+//     $resultado = $conexion->query("SELECT * FROM Publicacion_Hashtag");
+//     if ($resultado !== false && $resultado->num_rows > 0) {
+//         // La tabla ya existe, no es necesario hacer nada
+//     } else {
+//         $consulta = "CREATE TABLE Publicacion_Hashtag (
+//             id_Publicacion INT,
+//             id_Hashtag INT,
+//             PRIMARY KEY (id_Hashtag, id_Publicacion),
+//             FOREIGN KEY (id_Hashtag) REFERENCES Hashtags(id_Hashtag),
+//             FOREIGN KEY (id_Publicacion) REFERENCES Publicaciones(id_Publicacion)
+//         )";        
+//         if ($conexion->query($consulta) === TRUE) {
+//             echo "Tabla Publicacion_Hashtag creada exitosamente.";
+//         } else {
+//             echo "Error al crear la tabla Publicacion_Hashtag: " . $conexion->error;
+//         }
+//     }
+// }
 
 
 function crearTablaMensajes($conexion) {
@@ -143,15 +144,15 @@ function crearTablaMensajes($conexion) {
         // La tabla ya existe, no es necesario hacer nada
     } else {
         $consulta = "CREATE TABLE Mensajes (
+            id_Mensaje INT AUTO_INCREMENT,
             id_UsuarioRemitente INT,
             id_UsuarioRecibe INT,
-            id_Mensaje INT,
             contenido VARCHAR(255),
-            fecha Date,
-            PRIMARY KEY (id_UsuarioRemitente, id_UsuarioRecibe, id_Mensaje),
+            fecha DATETIME,
+            PRIMARY KEY (id_Mensaje, id_UsuarioRemitente, id_UsuarioRecibe),
             FOREIGN KEY (id_UsuarioRemitente) REFERENCES Usuarios(id_Usuario),
             FOREIGN KEY (id_UsuarioRecibe) REFERENCES Usuarios(id_Usuario)
-        )";        
+        )";
         if ($conexion->query($consulta) === TRUE) {
             echo "Tabla Mensajes creada exitosamente.";
         } else {
@@ -186,30 +187,30 @@ function crearTablaCoincidencias($conexion) {
 }
 
 
-function crearTablaRelacion_Esporadica($conexion) {
-    $conexion->select_db("NewCoup");
+// function crearTablaRelacion_Esporadica($conexion) {
+//     $conexion->select_db("NewCoup");
 
-    $resultado = $conexion->query("SELECT * FROM Relacion_Esporadica");
-    if ($resultado !== false && $resultado->num_rows > 0) {
-        // La tabla ya existe, no es necesario hacer nada
-    } else {
-        $consulta = "CREATE TABLE Relacion_Esporadica (
-            id_Relacion INT AUTO_INCREMENT,
-            id_Usuario1 INT,
-            id_Usuario2 INT,
-            fecha Date,
-            tipo VARCHAR(20),
-            PRIMARY KEY (id_Relacion, id_Usuario1, id_Usuario2),
-            FOREIGN KEY (id_Usuario1) REFERENCES Usuarios(id_Usuario),
-            FOREIGN KEY (id_Usuario2) REFERENCES Usuarios(id_Usuario)
-        )";        
-        if ($conexion->query($consulta) === TRUE) {
-            echo "Tabla Relacion_Esporadica creada exitosamente.";
-        } else {
-            echo "Error al crear la tabla Relacion_Esporadica: " . $conexion->error;
-        }
-    }
-}
+//     $resultado = $conexion->query("SELECT * FROM Relacion_Esporadica");
+//     if ($resultado !== false && $resultado->num_rows > 0) {
+//         // La tabla ya existe, no es necesario hacer nada
+//     } else {
+//         $consulta = "CREATE TABLE Relacion_Esporadica (
+//             id_Relacion INT AUTO_INCREMENT,
+//             id_Usuario1 INT,
+//             id_Usuario2 INT,
+//             fecha Date,
+//             tipo VARCHAR(20),
+//             PRIMARY KEY (id_Relacion, id_Usuario1, id_Usuario2),
+//             FOREIGN KEY (id_Usuario1) REFERENCES Usuarios(id_Usuario),
+//             FOREIGN KEY (id_Usuario2) REFERENCES Usuarios(id_Usuario)
+//         )";        
+//         if ($conexion->query($consulta) === TRUE) {
+//             echo "Tabla Relacion_Esporadica creada exitosamente.";
+//         } else {
+//             echo "Error al crear la tabla Relacion_Esporadica: " . $conexion->error;
+//         }
+//     }
+// }
 
 
 

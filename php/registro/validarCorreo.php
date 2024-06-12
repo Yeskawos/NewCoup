@@ -1,77 +1,39 @@
-<?php
-// Permitir solicitudes desde cualquier origen
-header("Access-Control-Allow-Origin: *");
-// Permitir los métodos POST desde cualquier origen
-header("Access-Control-Allow-Methods: POST");
-// Permitir el contenido de la solicitud en el cuerpo (incluido el correo electrónico)
-header("Access-Control-Allow-Headers: Content-Type");
+<?
 
-//Incluimos la clase phpmailer para poder instanciar
-//un objeto de la misma
-include "C:\Apache24\htdocs\TFG\includes\class.phpmailer.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-// Creamos un objeto de la clase phpmailer
-$email = new phpmailer();
-$correo = '';
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
 
-// Verificamos si se ha enviado un correo
-if (isset($_GET['correo'])) {
-    // Obtener el correo enviado desde Angular
-    $correo = $_GET['correo'];
-	
-    // Generar un código aleatorio de 6 dígitos
-    $codigo = rand(100000, 999999);
+$mail = new PHPMailer(true);
 
-    // Con PluginDir le indicamos a la clase phpmailer donde se encuentra la clase smtp
-    $email->PluginDir = "includes/";
+try {
+    //Server settings
+    $mail->SMTPDebug = 2;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'one4pl.one';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'skoy@one4pl.one';                     //SMTP username
+    $mail->Password   = 'Cubo.Rubik19';                               //SMTP password
+    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    // Con la propiedad Mailer le indicamos que vamos a usar un servidor smtp
-    $email->Mailer = "smtp";
+    //Recipients
+    $mail->setFrom('skoy@one4pl.one', 'Skoy Soft');
+    $mail->addAddress('mcrdba04@gmail.com');     //Add a recipient
+    $mail->addAddress('ellen@example.com');               //Name is optional
 
-    // Asignamos a Host el nombre de nuestro servidor smtp estableciendo protocolo y puerto
-    $email->SMTPSecure = "tls";
-    $email->Host = "smtp.gmail.com";
-    $email->Port = 587;
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    // Le indicamos que el servidor smtp requiere autenticación
-    $email->SMTPAuth = true;
-
-    // Le decimos cual es nuestro nombre de usuario y password
-    $email->Username = "alumnosdawes@cifpcuenca.es";
-    $email->Password = "oaikqunnhayotcfd";
-
-    // Indicamos cual es nuestra dirección de correo y el nombre que queremos que vea el usuario que lee nuestro correo
-    $email->From = "$correo";
-    $email->FromName = "noreplay";
-
-    // Siguiendo recomendaciones del servidor lo establecemos a 5 minutos
-    $email->Timeout = 300;
-
-    // Indicamos cual es la dirección de destino del correo
-    $email->AddAddress("$correo");
-
-    // Asignamos asunto y cuerpo del mensaje
-    // El cuerpo del mensaje lo ponemos en formato html, haciendo que se vea en negrita
-    $email->Subject = $codigo;
-    $email->Body = "<b>Introduce el código de verificación</b><h1>" . $codigo . "</h1>";
-
-    // Definimos AltBody por si el destinatario del correo no admite email con formato html
-    $email->AltBody = "Introduce el código de verificación" . $codigo;
-
-    // Enviamos el mensaje
-    $exito = $email->Send();
-
-    // Si el mensaje no ha podido ser enviado, almacenamos el error en una variable
-    if (!$exito) {
-        $mensaje = "Problemas enviando correo electrónico" . "<br/>" . $email->ErrorInfo;
-		echo json_encode(["mensaje" => $mensaje]);
-    } else {
-        $mensaje = "Mensaje enviado correctamente";
-		echo json_encode(["mensaje" => $mensaje, "codigo" => $codigo]);
-    }
-} else {
-    $mensaje = "No has introducido ningun correo";
-	echo json_encode(["mensaje" => "200"]);
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
-
-// Retornamos el mensaje como un string en formato JSON

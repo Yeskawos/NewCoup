@@ -30,13 +30,13 @@ export class MensajeriaComponent implements OnInit{
         response => {
           if (response.success) {
             this.coincidencias = response.coincidencias;
-            console.log('Coincidencias' , this.coincidencias)
+            // console.log('Coincidencias' , this.coincidencias)
             const userIds = this.coincidencias.map((c: any) => c.id_Usuario2);
             this.userService.getUsersByIds(userIds)
             .subscribe(
               userResponse => {
                 this.usuariosCoincidencias.push(userResponse);
-                console.log(this.usuariosCoincidencias)
+                // console.log(this.usuariosCoincidencias)
               },
               error => {
                 console.error('Error al obtener los detalles del usuario:', error);

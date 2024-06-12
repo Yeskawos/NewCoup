@@ -26,7 +26,7 @@ export class LoginService{
     .pipe(
       map(response => {
         if (response.status === 200) {
-          console.log('Hola');
+          // console.log('Hola');
           this.user = response.user;
           // console.log(this.user);
           // Guarda el usuario en localStorage después de iniciar sesión exitosamente

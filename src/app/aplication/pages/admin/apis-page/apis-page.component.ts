@@ -29,7 +29,8 @@ export class ApisPageComponent implements OnInit{
         this.router.navigate(['/newCoup/home']); 
       }
 
-    this.tablasService.obtenerTablas().subscribe(
+    this.tablasService.obtenerTablas()
+    .subscribe(
       data => {
         console.log('Lista de tablas:', data.tablas);
         this.tablas = data.tablas;

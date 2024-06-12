@@ -55,38 +55,42 @@ export class HomeComponent implements OnInit{
     document.getElementById(targetId)?.classList.remove('dragover');
     
     if (targetId === 'like') {
+      alert("Like!!");
       this.addLike();
       this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
       }, 300);
-      console.log("like");
+      // console.log("like");
     } else if (targetId === 'dislike') {
+      alert("DisLike :/");
       this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
       }, 300);
-      console.log("dislike");
+      // console.log("dislike");
     }
   }  
 
   onLike(event: Event){
     event.preventDefault();
+    alert("Like!!");
     this.addLike();
       this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
       }, 300);
-      console.log("like");
+      // console.log("like");
   }
 
   onDislike(event: Event){
     event.preventDefault();
+    alert("DisLike :/");
     this.userService.getUserByPreference();
       setTimeout(() => {
         this.loadUser();
       }, 300);
-      console.log("dislike");
+      // console.log("dislike");
   }
 
 
@@ -94,7 +98,7 @@ export class HomeComponent implements OnInit{
     const user = localStorage.getItem('userActual');
     if (user) {
       const parsedUser = JSON.parse(user);
-      console.log(parsedUser)
+      // console.log(parsedUser)
       if (!this.userService.getIds().includes(parsedUser.id_Usuario)) {
         this.user = parsedUser;
         this.userService.addUserId(parsedUser.id_Usuario);
@@ -114,7 +118,7 @@ export class HomeComponent implements OnInit{
       }, 200);
       console.error('No se encontró ningún usuario actual en el almacenamiento local.');
     }
-    console.log(this.userService.ids);
+    // console.log(this.userService.ids);
   }
 
   async addLike() {
@@ -125,7 +129,7 @@ export class HomeComponent implements OnInit{
 
       await this.likesService.addLike(id_Usuario1)
       .subscribe(response => {
-        console.log('Respuesta de la API:', response);
+        // console.log('Respuesta de la API:', response);
       }, error => {
         console.error('Error al agregar el like:', error);
       });
@@ -139,6 +143,7 @@ export class HomeComponent implements OnInit{
         await this.crearCoincidenciaService.crearCoincidencia(this.user.id_Usuario, user.id_Usuario)
         .subscribe(
           response => {
+              alert("Has logrado una coincidencia!!");
               console.log('Coincidencia creada exitosamente:', response);
           },
           error => {

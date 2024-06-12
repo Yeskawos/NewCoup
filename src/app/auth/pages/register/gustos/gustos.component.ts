@@ -118,12 +118,13 @@ export class GustosComponent implements OnInit{
 
 
   mostrarDatos() {
-    console.log('Usuario: ',this.formulario.get('userName')!.value);
-    console.log('FechaNac: ',this.formulario.get('fechaNacimiento')!.value);
-    console.log('Edad: ',this.formulario.get('edad')!.value);
-    console.log('Genero: ',this.formulario.get('genero')!.value);
-    console.log('Orientacion: ',this.formulario.get('orientacionSexual')!.value);
-    console.log('Preferencias: ',this.formulario.get('preferencias')!.value);
+    // console.log('Usuario: ',this.formulario.get('userName')!.value);
+    // console.log('FechaNac: ',this.formulario.get('fechaNacimiento')!.value);
+    // console.log('Edad: ',this.formulario.get('edad')!.value);
+    // console.log('Genero: ',this.formulario.get('genero')!.value);
+    // console.log('Orientacion: ',this.formulario.get('orientacionSexual')!.value);
+    // console.log('Preferencias: ',this.formulario.get('preferencias')!.value);
+    console.log('Datos correctos');
   }
 
 

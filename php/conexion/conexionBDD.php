@@ -1,8 +1,21 @@
 <?
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
     $dbhost="localhost";
     $dbuser="root";
     $dbpass="1234";
 
-    $conexion = new mysqli($dbhost,$dbuser,$dbpass) or die ('Error de conexion a mysql: ' . $conexion->error.'<br>');
+    // $dbhost="localhost:3306";
+    // $dbuser="Cordoba";
+    // $dbpass="^G9i1n6s4";
 
-    $contraDefault = password_hash('1234', PASSWORD_DEFAULT);
+        // Crear conexión
+        $conexion = new mysqli($dbhost, $dbuser, $dbpass);
+
+        // Verificar conexión
+        if ($conexion->connect_error) {
+            die("Error de conexión a MySQL: " . $conexion->connect_error);
+        }
+    
+        echo "Conexión exitosa";

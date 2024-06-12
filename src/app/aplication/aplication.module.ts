@@ -9,7 +9,6 @@ import { LikesComponent } from './pages/allPages/likes/likes/likes.component';
 import { MensajeriaComponent } from './pages/allPages/mensajeria/mensajeria/mensajeria.component';
 import { ProfileComponent } from './pages/allPages/profile/profile/profile.component';
 import { PublicacionesComponent } from './pages/allPages/publicaciones/publicaciones/publicaciones.component';
-import { ManageUsersPageComponent } from './pages/admin/manageUsersPage/manage-users-page/manage-users-page.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,7 +22,6 @@ import { ProfileVisitedComponent } from './pages/allPages/profileVisited/profile
 @NgModule({
   declarations: [
     ApisPageComponent,
-    ManageUsersPageComponent,
     HomeComponent,
     LikesComponent,
     MensajeriaComponent,

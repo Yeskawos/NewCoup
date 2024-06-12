@@ -17,8 +17,7 @@ export class NavbarComponent implements OnInit{
     { route: '/newCoup/mensajeria', label: 'Mensajería', icon: 'send' },
     { route: '/newCoup/profile', label: 'Perfil', icon: 'account_circle' },
     { route: '/newCoup/publicaciones', label: 'Publicaciones', icon: 'add' },
-    { route: '/newCoup/apis', label: 'APIs', icon: 'lock' },
-    { route: '/newCoup/manageUsers', label: 'Gestionar Usuarios', icon: 'lock' }
+    { route: '/newCoup/apis', label: 'APIs', icon: 'lock' }
   ];
 
   lista = [
@@ -40,7 +39,7 @@ export class NavbarComponent implements OnInit{
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
 }

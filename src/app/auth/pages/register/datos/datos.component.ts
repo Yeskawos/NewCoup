@@ -61,7 +61,8 @@ export class DatosComponent implements OnInit {
     this.enviarCorreo.enviarCorreo(correo)
     .subscribe(response => {
       this.respuesta = response;
-      console.log('Correo enviado con éxito', response);
+      // console.log('Correo enviado con éxito', response);
+      alert('Correo enviado con éxito!')
     }, error => {
       console.error('Error al enviar correo', error);
     });
@@ -87,7 +88,7 @@ export class DatosComponent implements OnInit {
       this.passValidada = true;
     }else{
       alert("Debes introducir un codigo")
-      console.log(this.validacion.get('codigo')!.value)
+      // console.log(this.validacion.get('codigo')!.value)
     }
   }
     

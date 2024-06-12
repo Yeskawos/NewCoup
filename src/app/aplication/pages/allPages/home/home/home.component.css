@@ -8,3 +8,66 @@
 app-card{
     width: 50%;
 }
+
+
+
+/* footer */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  footer {
+    background-color: #f0f0f0; /* Gris blanquecino */
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-content {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .footer p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .footer a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .social-icons {
+    margin-top: 10px;
+  }
+  
+  .social-icons a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #555;
+  }
+  
+  i {
+    font-size: 36px;
+    vertical-align: middle;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  

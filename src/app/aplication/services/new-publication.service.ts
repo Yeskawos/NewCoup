@@ -41,7 +41,7 @@ export class NewPublicationService {
   async addPublicacion() {
     try {
         const response: any = await this.http.post(this.apiUrl, this.datos).toPromise();
-        console.log('Respuesta de la API:', response);
+        // console.log('Respuesta de la API:', response);
         if (response.success) {
             // console.log('Base64 de la imagen:', response.rutaFotos);
         } else {

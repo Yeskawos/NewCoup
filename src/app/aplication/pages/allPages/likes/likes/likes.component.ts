@@ -22,7 +22,7 @@ likedUsers: any[] = [];
         const user = JSON.parse(userData);
         if (user.likes) {
             const likedUserIds = user.likes.split(',').map((id: any) => parseInt(id.trim(), 10)).filter((id: any) => !isNaN(id));
-            console.log( likedUserIds);
+            // console.log( likedUserIds);
             this.userService.getUsersByIds(likedUserIds)
             .subscribe(
                 userResponse => {

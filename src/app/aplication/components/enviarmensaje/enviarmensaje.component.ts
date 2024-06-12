@@ -24,17 +24,17 @@ export class EnviarmensajeComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.chatId = parseInt(params.get('id') || '0', 10);
-      console.log(this.chatId)
+      // console.log(this.chatId)
     });
   }
 
   enviarMensaje(): void {
-    console.log('Mensaje enviado:', this.mensaje);
+    // console.log('Mensaje enviado:', this.mensaje);
     if(this.mensaje != ''){
       this.enviarMensajeService.enviarMensaje(this.id_Usuario, this.chatId!, this.mensaje)
       .subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
         },
         error => {
           console.error('Error al enviar el mensaje:', error);

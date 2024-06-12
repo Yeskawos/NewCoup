@@ -6,6 +6,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { DatosComponent } from './pages/register/datos/datos.component';
 import { GustosComponent } from './pages/register/gustos/gustos.component';
 import { DescripcionComponent } from './pages/register/descripcion/descripcion.component';
+import { Error404Component } from '../shared/errorPage/error404/error404.component';
 
 const routes: Routes = [
   {
@@ -39,8 +40,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: '**',
+        path: '404',
+        component: Error404Component
+      },
+      {
+        path: '',
         redirectTo: 'login'
+      },
+      {
+        path: '**',
+        redirectTo: '404'
       }
     ]
   }

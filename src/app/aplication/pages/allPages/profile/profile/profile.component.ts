@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit{
       await this.getPublicaciones.getPublicaciones(userId)
       .subscribe(
         (data: GetPublicacion[]) => {
-          console.log(data);
+          // console.log(data);
           this.publicaciones = data;
         },
         error => {
@@ -74,6 +74,7 @@ export class ProfileComponent implements OnInit{
     this.deletePostService.deletePost(id_Publicacion)
     .subscribe(
       response => {
+        alert("Publicación eliminada!")
         console.log('Publicación eliminada:', response);
         this.loadUserPosts();
       },

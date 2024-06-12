@@ -32,9 +32,10 @@ export class DescripcionComponent implements OnInit{
   }
 
   onFileSelected(event: any) {
-    console.log(event);
+    // console.log(event);
     this.selectedFile = event.target.files[0] as File;
     if (!this.selectedFile) {
+      alert('No se ha seleccionado ningún archivo.')
       console.error('No se ha seleccionado ningún archivo.');
     return;
     }
@@ -48,9 +49,10 @@ export class DescripcionComponent implements OnInit{
 
   previsualizar( event: any) {
     const selectedFile: File = event.target.files[0];
-    console.log(event.target.files);
+    // console.log(event.target.files);
 
     if (!selectedFile) {
+      alert('No se ha seleccionado ningún archivo.')
       console.error('No se ha seleccionado ningún archivo.');
       return;
     }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApisPageComponent } from './pages/admin/apis-page/apis-page.component';
-import { ManageUsersPageComponent } from './pages/admin/manageUsersPage/manage-users-page/manage-users-page.component';
 import { HomeComponent } from './pages/allPages/home/home/home.component';
 import { LikesComponent } from './pages/allPages/likes/likes/likes.component';
 import { MensajeriaComponent } from './pages/allPages/mensajeria/mensajeria/mensajeria.component';
@@ -10,6 +9,7 @@ import { PublicacionesComponent } from './pages/allPages/publicaciones/publicaci
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { ChatComponent } from './pages/allPages/chat/chat.component';
 import { ProfileVisitedComponent } from './pages/allPages/profileVisited/profile-visited/profile-visited.component';
+import { Error404Component } from '../shared/errorPage/error404/error404.component';
 
 
 const routes: Routes = [
@@ -20,10 +20,6 @@ const routes: Routes = [
       {
         path: 'apis',
         component: ApisPageComponent,
-      },
-      {
-        path: 'manageUsers',
-        component: ManageUsersPageComponent
       },
       {
         path: 'home',
@@ -56,8 +52,12 @@ const routes: Routes = [
     ]
   },
   {
+    path: '404',
+    component: Error404Component
+  },
+  {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: '404'
   }
 ];
 
